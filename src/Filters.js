@@ -15,9 +15,8 @@ function Filters( props ) {
                       block__flush-bottom">
         <Filter options={ props.tribeOptions }
                 handler={ props.setTribe }
-                label='Your tribe or Tribally Designated Housing Entity (if applicable)'
-                placeholder='Select your tribe or TDHE'
-                helperText='Only tribes and TDHEs with rental assistance programs will be listed.' />
+                label='Your tribe or the tribal lands where you live'
+                placeholder='Select your tribe or TDHE' />
       </div>
     </div>
   );

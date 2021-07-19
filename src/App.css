@@ -1,0 +1,11 @@
+.m-notification .cf-icon-svg {
+  font-size: 1.125em;
+}
+.cf-icon-svg {
+    height: 1.1875em;
+    vertical-align: text-top;
+    max-width: 1em;
+}
+dl dd {
+  word-break: break-all;
+}

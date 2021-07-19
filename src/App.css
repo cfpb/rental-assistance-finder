@@ -6,6 +6,6 @@
     vertical-align: text-top;
     max-width: 1em;
 }
-dl dd {
+dl {
   word-break: break-all;
 }

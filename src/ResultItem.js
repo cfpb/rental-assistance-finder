@@ -1,4 +1,8 @@
 const ResultItem = ( props ) => {
+  let contactInfo = props.item[ 'Program Page Link (Phone # if Link is Unavailable)' ];
+  if ( contactInfo.startsWith( 'http' ) ) {
+    contactInfo = <a href="{ contactInfo }">{ contactInfo }</a>
+  }
   return (
     <div className="block block__sub block__border-bottom block__padded-bottom">
       <h3>
@@ -32,7 +36,7 @@ const ResultItem = ( props ) => {
         <div>
           <dt>Contact info:&nbsp;</dt>
           <dd>
-            { props.item[ 'Program Page Link (Phone # if Link is Unavailable)' ] }
+            { contactInfo }
           </dd>
         </div>
       </dl>

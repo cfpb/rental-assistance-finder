@@ -43,3 +43,22 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
     return programs;
   }
 }
+
+export const generateResultsNotification = ( resultsCount, filtersApplied ) => {
+  let notification = '';
+  let notificationType = '';
+  if ( resultsCount > 0 ) {
+    notification = `Showing ${ resultsCount } total rental assistance 
+                    program${ resultsCount > 1 ? 's' : '' }`
+    if ( filtersApplied ) {
+      notification =`Showing ${ resultsCount } rental assistance 
+                     program${ resultsCount > 1 ? 's' : ''} 
+                     that match${ resultsCount > 1 ? '' : 'es' } your search`;
+      notificationType = 'success';
+    }
+  } else {
+    notification = 'No results';
+    notificationType = 'warning';
+  }
+  return [ notification, notificationType ];
+}

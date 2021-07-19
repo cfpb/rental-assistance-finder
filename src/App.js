@@ -20,7 +20,7 @@ const tribeOptions = generateTribalOptions( tribalPrograms );
 function App() {
   const [ state, setState ] = useState( '' );
   const [ tribe, setTribe ] = useState( '' );
-  
+
   const currentGeographicPrograms = filterGeographicPrograms( 
     geographicPrograms, state, tribe
   );
@@ -36,7 +36,8 @@ function App() {
                stateOptions={ stateOptions }
                tribeOptions={ tribeOptions } />
       <Results geographic={ currentGeographicPrograms }
-               tribal={ currentTribalPrograms }/>
+               tribal={ currentTribalPrograms }
+               filtered={ state || tribe }/>
     </div>
   );
 }

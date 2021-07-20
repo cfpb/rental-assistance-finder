@@ -3,7 +3,7 @@ export const processData = data => {
   let tribal = [];
 
   data.forEach( item => {
-    item["Geographic Level"] === 'Tribal Government' ? 
+    item[ "Geographic Level"] === 'Tribal Government' ? 
       tribal.push( item ) : 
       geographic.push( item );
   })
@@ -12,12 +12,17 @@ export const processData = data => {
 }
 
 export const generateTribalOptions = data => {
-  return data.map( item => ( 
+  let options = data.map( item => ( 
     { 
       value: item['Tribal Government/Territory'],
       label: item['Tribal Government/Territory'] 
     }
   ))
+  options.unshift({
+    value: null,
+    label: 'My tribe or tribal land is not listed'
+  })
+  return options;
 }
 
 export const filterGeographicPrograms = ( programs, state, tribe ) => {
@@ -37,7 +42,7 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
     return programs.filter( 
       item => ( item['Tribal Government/Territory'] === tribe )
     )
-  } else if ( state ) {
+  } else if ( state || tribe === null ) {
     return [];
   } else {
     return programs;

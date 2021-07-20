@@ -16,7 +16,7 @@ function Filters( props ) {
         <Filter options={ props.tribeOptions }
                 handler={ props.setTribe }
                 label='Your tribe or the tribal lands where you live'
-                placeholder='Select your tribe or TDHE' />
+                placeholder='Select your tribe' />
       </div>
     </div>
   );

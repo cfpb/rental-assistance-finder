@@ -6,9 +6,9 @@ const ResultItem = ( props ) => {
   return (
     <div className="block block__sub block__border-bottom block__padded-bottom">
       <h3>
-        { props.item[ 'City/County/Locality'] ||
-          props.item[ 'Tribal Government/Territory'] ||
-          props.item[ 'State']
+        { props.item[ 'City/County/Locality' ] ||
+          props.item[ 'Tribal Government/Territory' ] ||
+          props.item[ 'State' ]
         }
       </h3>
       <dl>

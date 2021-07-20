@@ -1,7 +1,7 @@
 const ResultItem = ( props ) => {
-  let contactInfo = props.item[ 'Program Page Link (Phone # if Link is Unavailable)' ];
-  if ( contactInfo.startsWith( 'http' ) ) {
-    contactInfo = <a href="{ contactInfo }">{ contactInfo }</a>
+  let contact = props.item[ 'Program Page Link (Phone # if Link is Unavailable)' ];
+  if ( contact.startsWith( 'http' ) ) {
+    contact = <a href="{ contact }" rel="noreferrer" target="_blank">{ contact }</a>
   }
   return (
     <div className="block block__sub block__border-bottom block__padded-bottom">
@@ -36,7 +36,7 @@ const ResultItem = ( props ) => {
         <div>
           <dt>Contact info:&nbsp;</dt>
           <dd>
-            { contactInfo }
+            { contact }
           </dd>
         </div>
       </dl>

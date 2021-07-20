@@ -17,7 +17,7 @@ function Filters( props ) {
                 handler={ props.setTribe }
                 label='Your tribe or the tribal lands where you live'
                 placeholder='Select your tribe'
-                helperText='Only tribes and TDHEs with rental assistance programs will be listed.' />
+                helperText='Only tribes with rental assistance programs are listed.' />
       </div>
     </div>
   );

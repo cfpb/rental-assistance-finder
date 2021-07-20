@@ -34,7 +34,7 @@ const ResultItem = ( props ) => {
           </dd>
         </div>
         <div>
-          <dt>Contact info:&nbsp;</dt>
+          <dt>Get started:&nbsp;</dt>
           <dd>
             { contact }
           </dd>

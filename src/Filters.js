@@ -3,9 +3,9 @@ import Filter from './Filter.js';
 function Filters( props ) { 
   return (
     <div className="filters o-well block block__sub">
-      <h3>Find rental assistance programs for...</h3>
+      <h3>Find rental assistance programs</h3>
       <Filter id="state-select"
-              label="Your state or territory"
+              label="For your state or territory"
               onChange={ props.onStateChange }
               options={ props.stateOptions }
               placeholder="Select your state or territory"
@@ -26,7 +26,7 @@ function Filters( props ) {
                       block__flush-bottom">
         <Filter id="tribe-select" 
                 helperText="Only tribes with rental assistance programs are listed."
-                label="Your tribe or the tribal lands where you live (if applicable)"
+                label="For your tribe or the tribal lands where you live (if applicable)"
                 onChange={ props.onTribeChange }
                 options={ props.tribeOptions }
                 placeholder="Select your tribe"

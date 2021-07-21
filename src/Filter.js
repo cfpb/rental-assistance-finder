@@ -12,15 +12,15 @@ const Filter = ( props ) => {
           </small>
         }
       </label>
-      <Select options={ props.options }
-              value={ [ props.value ] }
+      <Select aria-label={ props.label }
               getOptionLabel={ label => label }
               getOptionValue={ value => value }
-              onChange={ props.onChange }
+              inputId={ props.id }
               isClearable={ true }
+              onChange={ props.onChange }
+              options={ props.options }
               placeholder={ props.placeholder }
-              aria-label={ props.label }
-              inputId={ props.id } />
+              value={ [ props.value ] }/>
       </div>
     );
 };

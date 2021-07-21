@@ -29,8 +29,8 @@ const Results = ( props ) => {
     return (
       <Notification message={ `Sorry, we did not find a rental assistance 
                                program for your area.` }
-                    explanation={`Housing counselors can help you find resources 
-                                  in your area and make a plan.`}
+                    explanation={ `Housing counselors can help you find resources 
+                                  in your area and make a plan.` }
                     links={ [
                       {
                         'text': 'Find a housing counselor',
@@ -42,7 +42,7 @@ const Results = ( props ) => {
                         'helper_text': 'You may qualify for free legal help.'
                       }
                     ] }
-                    type='warning'/>
+                    type="warning"/>
     )
   }
 };

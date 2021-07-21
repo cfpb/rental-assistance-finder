@@ -1,0 +1,14 @@
+.m-notification .cf-icon-svg {
+  font-size: 1.125em;
+}
+.cf-icon-svg {
+    height: 1.1875em;
+    vertical-align: text-top;
+    max-width: 1em;
+}
+.App {
+  max-width: 41.875rem;
+}
+.App dl a {
+  word-break: break-all;
+}

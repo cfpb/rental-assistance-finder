@@ -1,5 +1,5 @@
 const countyUnlisted = 'My county is not listed';
-const tribeUnlisted = 'My tribe is not listed';
+const tribeUnlisted = 'My tribe or tribal land is not listed';
 
 export const processData = data => {
   let geographic = [];

@@ -3,7 +3,7 @@ import Filter from './Filter.js';
 function Filters( props ) { 
   return (
     <div className="filters o-well block block__sub">
-      <h3>Find rental assistance programs</h3>
+      <h2>Find rental assistance programs</h2>
       <Filter id="state-select"
               label="For your state or territory"
               onChange={ props.onStateChange }

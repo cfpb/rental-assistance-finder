@@ -39,7 +39,7 @@ function App() {
 
   let countyOptions = [];
 
-  if ( state && currentGeographicPrograms.length > 10 ) {
+  if ( state && currentGeographicPrograms.length > 5 ) {
     countyOptions = generateCountyOptions( currentGeographicPrograms );
   }
 

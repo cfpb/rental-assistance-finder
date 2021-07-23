@@ -1,13 +1,10 @@
 import Select from 'react-select';
 
 const Filter = ( props ) => {
-  function handleChange( selection ) {
-    props.handler( selection ? selection.value : ''  );
-  }
-  
   return (
     <div className="m-form-field">
-      <label className="a-label a-label__heading">
+      <label className="a-label a-label__heading"
+             htmlFor={ props.id }>
         { props.label }
         { props.helperText &&
           <small className="a-label_helper a-label_helper__block">
@@ -15,10 +12,15 @@ const Filter = ( props ) => {
           </small>
         }
       </label>
-      <Select options={ props.options }
-              onChange={ handleChange }
+      <Select aria-label={ props.label }
+              getOptionLabel={ label => label }
+              getOptionValue={ value => value }
+              inputId={ props.id }
               isClearable={ true }
-              placeholder={ props.placeholder } />
+              onChange={ props.onChange }
+              options={ props.options }
+              placeholder={ props.placeholder }
+              value={ [ props.value ] }/>
       </div>
     );
 };

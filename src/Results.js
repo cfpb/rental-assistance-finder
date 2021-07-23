@@ -29,20 +29,19 @@ const Results = ( props ) => {
     return (
       <Notification message={ `Sorry, we did not find a rental assistance 
                                program for your area.` }
-                    explanation={`Housing counselors can help you find resources 
-                                  in your area and make a plan.`}
+                    explanation={ `Housing counselors can help you find resources 
+                                  in your area and make a plan.` }
                     links={ [
                       {
                         'text': 'Find a housing counselor',
-                        'url': ''
+                        'url': 'https://www.consumerfinance.gov/find-a-housing-counselor/'
                       },
                       {
                         'text': 'Get advice about your legal rights.',
-                        'url': '',
-                        'helper_text': 'You may qualify for free legal help.'
+                        'url': 'https://www.consumerfinance.gov/ask-cfpb/how-do-i-find-an-attorney-in-my-state-en-1549/'
                       }
                     ] }
-                    type='warning'/>
+                    type="warning"/>
     )
   }
 };

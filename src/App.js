@@ -2,11 +2,13 @@ import './App.css';
 import { useState } from 'react';
 
 import programs from './data/programs.json';
-import stateOptions from './data/state-options.json';
+import stateOptions from './data/states.json';
 
 import { 
   filterGeographicPrograms,
   filterTribalPrograms,
+  filterProgramsByCounty,
+  generateCountyOptions,
   generateTribalOptions, 
   processData 
 } from './utils.js';
@@ -20,21 +22,44 @@ const tribeOptions = generateTribalOptions( tribalPrograms );
 function App() {
   const [ state, setState ] = useState( '' );
   const [ tribe, setTribe ] = useState( '' );
+  const [ county, setCounty ] = useState( '' );
 
-  const currentGeographicPrograms = filterGeographicPrograms( 
-    geographicPrograms, state, tribe
-  );
+  const updateState = ( state ) => {
+    setState( state );
+    setCounty( '' );
+  }
 
   const currentTribalPrograms = filterTribalPrograms( 
     tribalPrograms, state, tribe 
   );
 
+  let currentGeographicPrograms = filterGeographicPrograms( 
+    geographicPrograms, state, tribe
+  );
+
+  let countyOptions = [];
+
+  if ( state && currentGeographicPrograms.length > 5 ) {
+    countyOptions = generateCountyOptions( currentGeographicPrograms );
+  }
+
+  if ( county ) {
+    currentGeographicPrograms = filterProgramsByCounty( 
+      currentGeographicPrograms, county 
+    );
+  }
+
   return (
     <div className="App">
-      <Filters setState={ setState }
-               setTribe={ setTribe }
+      <Filters onStateChange={ updateState }
+               onTribeChange={ setTribe }
+               onCountyChange={ setCounty }
                stateOptions={ stateOptions }
-               tribeOptions={ tribeOptions } />
+               tribeOptions={ tribeOptions }
+               countyOptions= { countyOptions }
+               state={ state }
+               county={ county }
+               tribe={ tribe } />
       <Results geographic={ currentGeographicPrograms }
                tribal={ currentTribalPrograms }
                filtered={ state || tribe }/>

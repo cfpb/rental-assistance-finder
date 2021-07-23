@@ -1,6 +1,8 @@
 import { 
   filterGeographicPrograms,
   filterTribalPrograms,
+  filterProgramsByCounty,
+  generateCountyOptions,
   generateTribalOptions, 
   processData 
 } from '../utils.js';
@@ -107,13 +109,6 @@ describe('module::utils', () => {
       expect( results.length ).toEqual( 0 );
     } );
 
-    it( 'returns no results if tribe value equals null' , () => {
-      const results = filterTribalPrograms( 
-        tribalPrograms, '', null
-      )
-      expect( results.length ).toEqual( 0 );
-    } );
-
     it( 'returns all results if no state or tribe is selected' , () => {
       const results = filterTribalPrograms( 
         tribalPrograms, '', ''
@@ -152,8 +147,7 @@ describe('module::utils', () => {
     it( 'generates options for all tribes and an unlisted option' , () => {
       const options = generateTribalOptions( tribalPrograms );
       expect( options.length ).toEqual( 4 );
-      expect( options[0].value ).toEqual( null )
-      expect( options[1].value ).toEqual( tribalPrograms[0]["Tribal Government/Territory"] )
+      expect( options[1] ).toEqual( tribalPrograms[0]["Tribal Government/Territory"] )
     } );
   } );
 

@@ -19,10 +19,12 @@ const Notification = ( props ) => {
           <ul className="m-list m-list__links">
             { props.links.map( ( item, index ) => (
               <li className="m-list_item" key={ index }>
-                <a className="m-list_link" href="{ item.url }">
+                <a className="m-list_link"
+                   href={ item.url } 
+                   rel='noreferrer' 
+                   target='_blank'>
                   { item.text }
                 </a>
-                { item.helper_text ? item.helper_text : '' }
               </li>
             ) ) }
           </ul>

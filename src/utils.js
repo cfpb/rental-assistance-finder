@@ -1,5 +1,4 @@
 const countyUnlisted = 'My county is not listed';
-const tribeUnlisted = 'My tribe or tribal land is not listed';
 
 export const processData = data => {
   let geographic = [];
@@ -15,17 +14,16 @@ export const processData = data => {
 }
 
 export const generateTribalOptions = data => {
-  let options = data.map( item => ( item['Tribal Government/Territory'] ));
-  options.unshift( tribeUnlisted );
-  return options;
+  return data.map( item => ( item['Tribal Government/Territory'] ));
 }
 
 export const filterGeographicPrograms = ( programs, state, tribe ) => {
   if ( state ) {
     return programs.filter(
-      item => ( item['State'] === state )
+      item => ( item['State'] === state || 
+                item['Tribal Government/Territory'] === state )
     ) 
-  } else if ( tribe && tribe !== tribeUnlisted ) {
+  } else if ( tribe ) {
     return [];
   } else {
     return programs;
@@ -33,9 +31,7 @@ export const filterGeographicPrograms = ( programs, state, tribe ) => {
 }
 
 export const filterTribalPrograms = ( programs, state, tribe ) => {
-  if ( tribe === tribeUnlisted ) {
-    return [];
-  } else if ( tribe ) {
+  if ( tribe ) {
     return programs.filter( 
       item => ( item['Tribal Government/Territory'] === tribe )
     )

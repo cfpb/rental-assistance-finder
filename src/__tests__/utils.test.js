@@ -144,10 +144,10 @@ describe('module::utils', () => {
   } );
 
   describe( 'generateTribalOptions', () => {
-    it( 'generates options for all tribes and an unlisted option' , () => {
+    it( 'generates options for all tribes' , () => {
       const options = generateTribalOptions( tribalPrograms );
-      expect( options.length ).toEqual( 4 );
-      expect( options[1] ).toEqual( tribalPrograms[0]["Tribal Government/Territory"] )
+      expect( options.length ).toEqual( 3 );
+      expect( options[0] ).toEqual( tribalPrograms[0]["Tribal Government/Territory"] )
     } );
   } );
 

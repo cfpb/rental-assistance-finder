@@ -1,7 +1,7 @@
 const ResultItem = ( props ) => {
   let contact = props.item['Program Page Link (Phone # if Link is Unavailable)'];
   if ( contact.startsWith( 'http' ) ) {
-    contact = <a href='{ contact }' rel='noreferrer' target='_blank'>{ contact }</a>
+    contact = <a href={ contact } rel='noreferrer' target='_blank'>{ contact }</a>
   }
   return (
     <div className="block

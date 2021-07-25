@@ -9,75 +9,70 @@ import {
 
 const tribalPrograms = [
 	{
-    "Geographic Level": "Tribal Government",
+    "Type": "Tribal Government",
     "State": "Oklahoma",
-    "Tribal Government/Territory": "Apache Tribe of Oklahoma",
-    "Program Name": "Apache Tribe of Oklahoma Emergency Rental Assistance Program (ERAP)",
-    "Program Page Link (Phone # if Link is Unavailable)": "https://apachetribe.org/emergency-rental-assistance-program-erap/",
+    "Name": "Apache Tribe of Oklahoma",
+    "Program": "Apache Tribe of Oklahoma Emergency Rental Assistance Program (ERAP)",
+    "URL": "https://apachetribe.org/emergency-rental-assistance-program-erap/",
   },
   {
-    "Geographic Level": "Tribal Government",
+    "Type": "Tribal Government",
     "State": "Oklahoma",
-    "City/County/Locality": "",
-    "Tribal Government/Territory": "Caddo Nation",
-    "Program Name": "Caddo Nation Emergency Rental Assistance",
-    "Program Page Link (Phone # if Link is Unavailable)": "https://mycaddonation.com/housing",
+    "Name": "Caddo Nation",
+    "Program": "Caddo Nation Emergency Rental Assistance",
+    "URL": "https://mycaddonation.com/housing",
   },
   {
-    "Geographic Level": "Tribal Government",
+    "Type": "Tribal Government",
     "State": "Oklahoma",
-    "City/County/Locality": "",
-    "Tribal Government/Territory": "Cherokee Nation",
-    "Program Name": "Cherokee Nation Emergency Rental Assistance Program (ERAP)",
-    "Program Page Link (Phone # if Link is Unavailable)": "https://www.hacn.org/hacn",
+    "Name": "Cherokee Nation",
+    "Program": "Cherokee Nation Emergency Rental Assistance Program (ERAP)",
+    "URL": "https://www.hacn.org/hacn",
   }
 ]
 
 const geographicPrograms = [
    {
-    "Geographic Level": "State",
+    "Type": "State",
     "State": "Alabama",
-    "City/County/Locality": "",
-    "Program Name": "Alabama Emergency Rental Assistance Program",
-    "Program Page Link (Phone # if Link is Unavailable)": "https://eraalabama.com/",
+    "Name": "Alabama",
+    "Program": "Alabama Emergency Rental Assistance Program",
+    "URL": "https://eraalabama.com/",
   },
   {
-    "Geographic Level": "County",
+    "Type": "County",
     "State": "Alabama",
-    "City/County/Locality": "Baldwin County",
-    "Program Name": "Baldwin County Emergency Rental Assistance Program",
-    "Program Page Link (Phone # if Link is Unavailable)": "https://www.baldwinaltogether.org/",
+    "Name": "Baldwin County",
+    "Program": "Baldwin County Emergency Rental Assistance Program",
+    "URL": "https://www.baldwinaltogether.org/",
   },
   {
-    "Geographic Level": "City",
+    "Type": "City",
     "State": "Alabama",
-    "City/County/Locality": "Birmingham",
-    "Program Name": "Birmingham Emergency Rental Assistance Program",
-    "Program Page Link (Phone # if Link is Unavailable)": "https://www.birminghamal.gov/renthelp",
+    "Name": "Birmingham",
+    "Program": "Birmingham Emergency Rental Assistance Program",
+    "URL": "https://www.birminghamal.gov/renthelp",
   },
   {
-    "Geographic Level": "State",
+    "Type": "State",
     "State": "California",
-    "City/County/Locality": "",
-    "Tribal Government/Territory": "",
-    "Program Name": "California's COVID-19 Rent Relief",
-    "Program Page Link (Phone # if Link is Unavailable)": "https://landlordtenant.dre.ca.gov/covid_rr/index.html",
+    "Name": "California",
+    "Program": "California's COVID-19 Rent Relief",
+    "URL": "https://landlordtenant.dre.ca.gov/covid_rr/index.html",
   },
   {
-    "Geographic Level": "County",
+    "Type": "County",
     "State": "California",
-    "City/County/Locality": "Alameda County",
-    "Tribal Government/Territory": "",
-    "Program Name": "Alameda County Housing Secure Emergency Rental Assistance Program (ACHS-ERAP)",
-    "Program Page Link (Phone # if Link is Unavailable)": "https://www.ac-housingsecure.org/",
+    "Name": "Alameda County",
+    "Program": "Alameda County Housing Secure Emergency Rental Assistance Program (ACHS-ERAP)",
+    "URL": "https://www.ac-housingsecure.org/",
   },
   {
-    "Geographic Level": "City",
+    "Type": "City",
     "State": "California",
-    "City/County/Locality": "Anaheim",
-    "Tribal Government/Territory": "",
-    "Program Name": "Anaheim Emergency Rental Assistance Program",
-    "Program Page Link (Phone # if Link is Unavailable)": "https://www.anaheim.net/5532/Emergency-Rental-Assistance-Program",
+    "Name": "Anaheim",
+    "Program": "Anaheim Emergency Rental Assistance Program",
+    "URL": "https://www.anaheim.net/5532/Emergency-Rental-Assistance-Program",
   }
 ]
 
@@ -147,7 +142,7 @@ describe('module::utils', () => {
     it( 'generates options for all tribes' , () => {
       const options = generateTribalOptions( tribalPrograms );
       expect( options.length ).toEqual( 3 );
-      expect( options[0] ).toEqual( tribalPrograms[0]["Tribal Government/Territory"] )
+      expect( options[0] ).toEqual( tribalPrograms[0]["Name"] )
     } );
   } );
 

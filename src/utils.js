@@ -20,7 +20,8 @@ export const generateTribalOptions = data => {
 export const filterGeographicPrograms = ( programs, state, tribe ) => {
   if ( state ) {
     return programs.filter(
-      item => ( item['State'] === state )
+      item => ( item['State'] === state || 
+                item['Tribal Government/Territory'] === state )
     ) 
   } else if ( tribe ) {
     return [];

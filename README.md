@@ -1,4 +1,4 @@
-# ERAP lookup tool
+# Rental assistance finder tool
 
 Allows users to view and filter emergency rental assistance programs.
 

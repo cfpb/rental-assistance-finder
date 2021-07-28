@@ -1,68 +1,53 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import RentalAssistanceFinder from './RentalAssistanceFinder.js';
+import Notification from "./Notification.js";
 
-import programs from './data/programs.json';
-import stateOptions from './data/states.json';
-
-import { 
-  filterGeographicPrograms,
-  filterTribalPrograms,
-  filterProgramsByCounty,
-  generateCountyOptions,
-  generateTribalOptions, 
-  processData 
+import {
+  generateTribalOptions,
+  processData
 } from './utils.js';
 
-import Filters from './Filters.js';
-import Results from './Results.js';
-
-const [ geographicPrograms, tribalPrograms ] = processData( programs );
-const tribeOptions = generateTribalOptions( tribalPrograms );
 
 function App() {
-  const [ state, setState ] = useState( '' );
-  const [ tribe, setTribe ] = useState( '' );
-  const [ county, setCounty ] = useState( '' );
-
-  const updateState = ( state ) => {
-    setState( state );
-    setCounty( '' );
-  }
-
-  const currentTribalPrograms = filterTribalPrograms( 
-    tribalPrograms, state, tribe 
-  );
-
-  let currentGeographicPrograms = filterGeographicPrograms( 
-    geographicPrograms, state, tribe
-  );
-
-  let countyOptions = [];
-
-  if ( state && currentGeographicPrograms.length > 5 ) {
-    countyOptions = generateCountyOptions( currentGeographicPrograms );
-  }
-
-  if ( county ) {
-    currentGeographicPrograms = filterProgramsByCounty( 
-      currentGeographicPrograms, county 
-    );
-  }
+  const [ data, setData ] = useState( {
+    geographic: [],
+    tribal: [],
+    tribeOptions: []
+  } );
+  const [ loading, setLoading ] = useState( true );
+ 
+  useEffect( () => {
+    // move some of this to utils
+    const fetchData =  () => {
+      const url = 'https://files.consumerfinance.gov/a/assets/raf/raf.json';
+      fetch(url)
+        // handle failure
+        .then( res => res.json() )
+        .then( json => {
+          // handle data processing errors
+          const [ geographic, tribal ] = processData( json );
+          const tribeOptions = generateTribalOptions( tribal );
+          setData( {
+            geographic: geographic,
+            tribal: tribal,
+            tribeOptions: tribeOptions
+          } );
+          setLoading( false )
+        })
+    }
+    fetchData();
+  }, []) // second argument means this will only run once, when component mounts
 
   return (
     <div className="App">
-      <Filters onStateChange={ updateState }
-               onTribeChange={ setTribe }
-               onCountyChange={ setCounty }
-               stateOptions={ stateOptions }
-               tribeOptions={ tribeOptions }
-               countyOptions= { countyOptions }
-               state={ state }
-               county={ county }
-               tribe={ tribe } />
-      <Results geographic={ currentGeographicPrograms }
-               tribal={ currentTribalPrograms }
-               filtered={ state || tribe }/>
+      { loading ? (
+          <Notification message='The Rental Assistance Finder is loading'
+                        type='loading' />
+        ) : (
+          <RentalAssistanceFinder data={ data }/>
+        )
+      }
     </div>
   );
 }

@@ -5,7 +5,7 @@ export const processData = data => {
   let tribal = [];
 
   data.forEach( item => {
-    item['Geographic Level'] === 'Tribal Government' ? 
+    item['Type'] === 'Tribal Government' ? 
       tribal.push( item ) : 
       geographic.push( item );
   })
@@ -14,14 +14,13 @@ export const processData = data => {
 }
 
 export const generateTribalOptions = data => {
-  return data.map( item => ( item['Tribal Government/Territory'] ));
+  return data.map( item => ( item['Name'] ));
 }
 
 export const filterGeographicPrograms = ( programs, state, tribe ) => {
   if ( state ) {
     return programs.filter(
-      item => ( item['State'] === state || 
-                item['Tribal Government/Territory'] === state )
+      item => ( item['State'] === state )
     ) 
   } else if ( tribe ) {
     return [];
@@ -33,7 +32,7 @@ export const filterGeographicPrograms = ( programs, state, tribe ) => {
 export const filterTribalPrograms = ( programs, state, tribe ) => {
   if ( tribe ) {
     return programs.filter( 
-      item => ( item['Tribal Government/Territory'] === tribe )
+      item => ( item['Name'] === tribe )
     )
   } else if ( state ) {
     return [];
@@ -45,9 +44,9 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
 export const generateCountyOptions = ( programs ) => {
   let counties = new Set( [ countyUnlisted ]  );
   programs.forEach( item => {
-    if ( item['Geographic Level'] === 'County' ) {
-      counties.add( item['City/County/Locality'] )
-    } else if ( item['Geographic Level'] === 'City' && item['County'] ) {
+    if ( item['Type'] === 'County' ) {
+      counties.add( item['Name'] )
+    } else if ( item['Type'] === 'City' && item['County'] ) {
       item['County'].forEach( county => counties.add( county ) );
     } 
   });
@@ -56,10 +55,10 @@ export const generateCountyOptions = ( programs ) => {
 
 export const filterProgramsByCounty = ( programs, county ) => {
   return programs.filter( item => ( 
-      ( item['Geographic Level'] === 'State' ) || 
-      ( item['Geographic Level'] === 'County' && 
-        item['City/County/Locality'] === county ) ||
-      ( item['Geographic Level'] === 'City' && 
+      ( item['Type'] === 'State' ) || 
+      ( item['Type'] === 'County' && 
+        item['Name'] === county ) ||
+      ( item['Type'] === 'City' && 
         item['County'] && 
         item['County'].includes( county ) ) 
     )

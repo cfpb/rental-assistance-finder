@@ -2,6 +2,7 @@ import Notification from "./Notification.js";
 import ResultItem from "./ResultItem.js";
 
 const Results = ( props ) => {
+  console.log( props.geographic)
   const results = [ ...props.geographic, ...props.tribal ];
   const resultsCount = results.length;
   if ( resultsCount > 0 ) {

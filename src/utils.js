@@ -14,7 +14,7 @@ export const processData = data => {
 }
 
 export const generateTribalOptions = data => {
-  return data.map( item => ( item['Name'] ));
+  return data.map( item => ( item['Name'] )).sort();
 }
 
 export const filterGeographicPrograms = ( programs, state, tribe ) => {
@@ -41,16 +41,22 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
   }
 }
 
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
 export const generateCountyOptions = ( programs ) => {
-  let counties = new Set( [ countyUnlisted ]  );
+  let counties = [];
   programs.forEach( item => {
     if ( item['Type'] === 'County' ) {
-      counties.add( item['Name'] )
+      counties.push( item['Name'] )
     } else if ( item['Type'] === 'City' && item['County'] ) {
-      item['County'].forEach( county => counties.add( county ) );
+      item['County'].forEach( county => counties.push( county ) );
     } 
   });
-  return [ ...counties ];
+  counties = counties.filter( onlyUnique ).sort();
+  counties.unshift( countyUnlisted );
+  return counties;
 }
 
 export const filterProgramsByCounty = ( programs, county ) => {
@@ -60,7 +66,7 @@ export const filterProgramsByCounty = ( programs, county ) => {
         item['Name'] === county ) ||
       ( item['Type'] === 'City' && 
         item['County'] && 
-        item['County'].includes( county ) ) 
+        item['County'].indexOf( county ) !== -1 ) 
     )
   )
 }

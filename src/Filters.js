@@ -29,7 +29,7 @@ function Filters( props ) {
                 label="For your tribe or the tribal lands where you live (if applicable)"
                 onChange={ props.onTribeChange }
                 options={ props.tribeOptions }
-                placeholder="Select your tribe"
+                placeholder="Select the tribe or tribal lands"
                 value={ props.tribe }/>
       </div>
     </div>

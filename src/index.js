@@ -1,13 +1,14 @@
+import 'polyfill-array-includes';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('erap-lookup')
+  document.getElementById('rental-assistance-finder')
 );
 
 

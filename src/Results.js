@@ -2,7 +2,7 @@ import Notification from "./Notification.js";
 import ResultItem from "./ResultItem.js";
 
 const Results = ( props ) => {
-  const results = [ ...props.geographic, ...props.tribal ];
+  const results = [].concat( props.geographic, props.tribal );
   const resultsCount = results.length;
   if ( resultsCount > 0 ) {
     let notification, notificationType;
@@ -37,7 +37,7 @@ const Results = ( props ) => {
                         'url': 'https://www.consumerfinance.gov/find-a-housing-counselor/'
                       },
                       {
-                        'text': 'Get advice about your legal rights.',
+                        'text': 'Get advice about your legal rights',
                         'url': 'https://www.consumerfinance.gov/ask-cfpb/how-do-i-find-an-attorney-in-my-state-en-1549/'
                       }
                     ] }

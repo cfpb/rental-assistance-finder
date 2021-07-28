@@ -10,7 +10,7 @@ const Notification = ( props ) => {
                      m-notification__${ props.type }`}>
       { props.type && iconMap[props.type]}
       <div className="m-notification_content"
-           role={ ['warning', 'error'].includes( props.type ) ?  'alert' : undefined }>
+           role={ ['warning', 'error'].indexOf( props.type ) !== -1 ?  'alert' : undefined }>
         <div className="h4 m-notification_message">{ props.message }</div>
         { props.explanation &&
           <div className="m-notification_explanation">{ props.explanation }</div>

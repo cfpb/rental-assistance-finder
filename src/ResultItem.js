@@ -39,6 +39,7 @@ const ResultItem = ( props ) => {
                 <span>{ props.item['Phone'] }</span>
               }
             </dd>
+          </div>
         }
       </dl>
     </div>    

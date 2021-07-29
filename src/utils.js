@@ -21,7 +21,9 @@ export const filterGeographicPrograms = ( programs, state, tribe ) => {
   if ( state ) {
     return programs.filter(
       item => ( item['State'] === state )
-    ) 
+    ).sort(function (a, b) {
+      return a['Type'].localeCompare(b['Type']) || a['Name'].localeCompare(b['Name']);
+    });
   } else if ( tribe ) {
     return [];
   } else {

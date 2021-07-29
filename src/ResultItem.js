@@ -4,9 +4,7 @@ const ResultItem = ( props ) => {
                     block__sub
                     block__border-bottom
                     block__padded-bottom">
-      <h3>
-        { props.item['Name'] }
-      </h3>
+      <h3>{ props.item['Name'] }</h3>
       <dl>
         { props.item['Type'] !== 'Tribal Government' &&
           <div>
@@ -41,7 +39,6 @@ const ResultItem = ( props ) => {
                 <span>{ props.item['Phone'] }</span>
               }
             </dd>
-          </div>
         }
       </dl>
     </div>    

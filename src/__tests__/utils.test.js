@@ -4,7 +4,9 @@ import {
   filterProgramsByCounty,
   generateCountyOptions,
   generateTribalOptions, 
-  processData 
+  processData,
+  sortGeographic,
+  sortStatePrograms
 } from '../utils.js';
 
 const tribalPrograms = [
@@ -76,6 +78,64 @@ const geographicPrograms = [
   }
 ]
 
+const statePrograms = [
+  {
+     "Type":"State",
+     "State":"Indiana",
+     "Program":"Indiana Emergency Rental Assistance",
+     "Name":"Indiana",
+     "URL":"https://apply.ihcda.in.gov/submit"
+  },
+  {
+     "Type":"County",
+     "State":"Indiana",
+     "Program":"Elkhart County Emergency Rental Assistance Program",
+     "Name":"Elkhart County",
+     "URL":"https://elkhartcounty.com/en/residents/elkhart-county-rental-assistance-program/"
+  },
+  {
+     "Type":"City",
+     "State":"Indiana",
+     "Program":"Fort Wayne Emergency Rental Assistance Program",
+     "Name":"Fort Wayne",
+     "County":[
+        "Allen County"
+     ],
+     "URL":"https://www.fwcommunitydevelopment.org/housing/renter-assistance"
+  },
+  {
+     "Type":"County",
+     "State":"Indiana",
+     "Program":"Hamilton County Emergency Rental Assistance Program (ERAP)",
+     "Name":"Hamilton County",
+     "URL":"https://www.hctaindiana.com/era"
+  },
+  {
+     "Type":"City",
+     "State":"Indiana",
+     "Program":"Indianapolis Rental Assistance Program",
+     "Name":"Indianapolis",
+     "County":[
+        "Marion County"
+     ],
+     "URL":"https://indyrent.org/"
+  },
+  {
+     "Type":"County",
+     "State":"Indiana",
+     "Program":"Lake County Emergency Assistance (LCERA) program",
+     "Name":"Lake County",
+     "URL":"https://www.lakecountyin.care/"
+  },
+  {
+     "Type":"County",
+     "State":"Indiana",
+     "Program":"St. Joseph County’s Emergency Rental Assistance (ERA)",
+     "Name":"St. Joseph County",
+     "URL":"https://www.sjcindiana.com/2019/Emergency-Rental-Assistance-Program"
+  }
+]
+
 const allPrograms = [...geographicPrograms, ...tribalPrograms]
 
 describe('module::utils', () => {
@@ -119,7 +179,7 @@ describe('module::utils', () => {
         geographicPrograms, 'California', 'Caddo Nation'
       )
       expect( results.length ).toEqual( 3 );
-      expect( results[0] ).toEqual( geographicPrograms[3] )
+      expect( results[2]['Name'] ).toEqual( 'California' )
     } );
 
     it( 'returns no results when tribe but not state is selected' , () => {
@@ -154,4 +214,37 @@ describe('module::utils', () => {
     } );
   } );
 
+  describe( 'sortStatePrograms', () => {
+    it( 'sorts state results alphabetically by type and then name' , () => {
+      const sorted = sortStatePrograms( statePrograms );
+      expect( sorted.map( item => ( item['Name'] ) ) ).toEqual(
+        ['Fort Wayne', 'Indianapolis', 'Elkhart County',
+         'Hamilton County', 'Lake County', 'St. Joseph County',
+         'Indiana']
+      )
+    } );
+  } );
+
+  describe( 'sortGeographic', () => {
+    it( 'sorts cities alphabetically' , () => {
+      expect( sortGeographic(   
+        {'Name': 'Indianapolis', 'Type': 'City'},
+        {'Name': 'Fort Wayne', 'Type': 'City'}
+      ) ).toEqual( 1 );
+    } );
+
+    it( 'sorts cities then counties' , () => {
+      expect( sortGeographic(   
+        {'Name': 'Indianapolis', 'Type': 'City'},
+        {'Name': 'Allen County', 'Type': 'County'}
+      ) ).toEqual( -1 );
+    } );
+
+    it( 'sorts counties alphabetically' , () => {
+      expect( sortGeographic(   
+        {'Name': 'Lake County', 'Type': 'County'},
+        {'Name': 'Allen County', 'Type': 'County'}
+      ) ).toEqual( 1 );
+    } );
+  } );
 })

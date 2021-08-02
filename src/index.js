@@ -1,4 +1,6 @@
 import 'polyfill-array-includes';
+import 'whatwg-fetch';
+import 'promise-polyfill/src/polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

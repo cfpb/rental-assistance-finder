@@ -3,8 +3,7 @@ import {
   filterTribalPrograms,
   filterProgramsByCounty,
   generateCountyOptions,
-  generateTribalOptions, 
-  processData 
+  generateTribalOptions
 } from '../utils.js';
 
 const tribalPrograms = [
@@ -143,14 +142,6 @@ describe('module::utils', () => {
       const options = generateTribalOptions( tribalPrograms );
       expect( options.length ).toEqual( 3 );
       expect( options[0] ).toEqual( tribalPrograms[0]["Name"] )
-    } );
-  } );
-
-  describe( 'processData', () => {
-    it( 'separates tribal and geographic programs' , () => {
-      const [ geographic, tribal ] = processData( allPrograms );
-      expect( geographic ).toEqual( geographicPrograms );
-      expect( tribal ).toEqual( tribalPrograms );
     } );
   } );
 

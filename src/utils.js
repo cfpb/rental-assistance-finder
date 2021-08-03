@@ -1,5 +1,18 @@
 const countyUnlisted = 'My county is not listed';
 
+export const onlyUnique = ( value, index, self ) => {
+  return self.indexOf( value ) === index;
+}
+
+export const sortGeographic = ( a, b ) => {
+  return a['Type'].localeCompare( b['Type'] ) || 
+         a['Name'].localeCompare( b['Name'] );
+}
+
+export const sortStatePrograms = ( programs ) => {
+  return programs.sort( sortGeographic );
+}
+
 export const processData = data => {
   let geographic = [];
   let tribal = [];
@@ -14,14 +27,15 @@ export const processData = data => {
 }
 
 export const generateTribalOptions = data => {
-  return data.map( item => ( item['Name'] )).sort();
+  return data.map( item => ( item['Name'] ) ).sort();
 }
 
 export const filterGeographicPrograms = ( programs, state, tribe ) => {
   if ( state ) {
-    return programs.filter(
+    let filtered = programs.filter(
       item => ( item['State'] === state )
-    ) 
+    );
+    return sortStatePrograms( filtered );
   } else if ( tribe ) {
     return [];
   } else {
@@ -41,17 +55,13 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
   }
 }
 
-function onlyUnique(value, index, self) {
-  return self.indexOf(value) === index;
-}
-
 export const generateCountyOptions = ( programs ) => {
   let counties = [];
   programs.forEach( item => {
     if ( item['Type'] === 'County' ) {
       counties.push( item['Name'] )
     } else if ( item['Type'] === 'City' && item['County'] ) {
-      item['County'].forEach( county => counties.push( county ) );
+      counties = counties.concat( item['County'] );
     } 
   });
   counties = counties.filter( onlyUnique ).sort();

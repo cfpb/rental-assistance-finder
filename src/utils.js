@@ -5,15 +5,25 @@ export const onlyUnique = ( value, index, self ) => {
   return self.indexOf( value ) === index;
 }
 
+export const sortGeographic = ( a, b ) => {
+  return a.type.localeCompare( b.type ) || 
+         a.name.localeCompare( b.name );
+}
+
+export const sortStatePrograms = ( programs ) => {
+  return programs.sort( sortGeographic );
+}
+
 export const generateTribalOptions = data => {
-  return data.map( item => ( item.name ));
+  return data.map( item => ( item.name ) ).sort();
 }
 
 export const filterGeographicPrograms = ( programs, state, tribe ) => {
   if ( state ) {
-    return programs.filter(
+    let filtered = programs.filter(
       item => ( item.state === state )
     );
+    return sortStatePrograms( filtered );
   } else if ( tribe ) {
     return [];
   } else {
@@ -37,7 +47,7 @@ export const generateCountyOptions = ( programs ) => {
   let counties = [];
   programs.forEach( item => {
     if ( item.type === 'County' ) {
-      counties.push( item.name )
+      counties.push( item.name );
     } else if ( item.type === 'City' && item.county ) {
       counties = counties.concat( item.county );
     } 

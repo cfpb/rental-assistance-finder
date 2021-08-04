@@ -1,68 +1,52 @@
 import './App.css';
-import { useState } from 'react';
-
-import programs from './data/programs.json';
-import stateOptions from './data/states.json';
-
-import { 
-  filterGeographicPrograms,
-  filterTribalPrograms,
-  filterProgramsByCounty,
-  generateCountyOptions,
-  generateTribalOptions, 
-  processData 
-} from './utils.js';
-
-import Filters from './Filters.js';
-import Results from './Results.js';
-
-const [ geographicPrograms, tribalPrograms ] = processData( programs );
-const tribeOptions = generateTribalOptions( tribalPrograms );
+import { useEffect, useState } from 'react';
+import { fetchPrograms, generateTribalOptions } from './utils.js';
+import RentalAssistanceFinder from './RentalAssistanceFinder.js';
+import Notification from "./Notification.js";
 
 function App() {
-  const [ state, setState ] = useState( '' );
-  const [ tribe, setTribe ] = useState( '' );
-  const [ county, setCounty ] = useState( '' );
-
-  const updateState = ( state ) => {
-    setState( state );
-    setCounty( '' );
-  }
-
-  const currentTribalPrograms = filterTribalPrograms( 
-    tribalPrograms, state, tribe 
-  );
-
-  let currentGeographicPrograms = filterGeographicPrograms( 
-    geographicPrograms, state, tribe
-  );
-
-  let countyOptions = [];
-
-  if ( state && currentGeographicPrograms.length > 5 ) {
-    countyOptions = generateCountyOptions( currentGeographicPrograms );
-  }
-
-  if ( county ) {
-    currentGeographicPrograms = filterProgramsByCounty( 
-      currentGeographicPrograms, county 
-    );
-  }
+  const [ data, setData ] = useState( {
+    geographic: [],
+    tribal: []
+  } );
+  const [ loading, setLoading ] = useState( true );
+ 
+  useEffect( () => {
+    // empty array as second argument causes this to run once
+    const fetchData = () => {
+      fetchPrograms()
+        .then( programData => {
+          setData( programData );
+          setLoading( false );
+        })
+        .catch( error => {
+          setLoading( false );
+        } );
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="App">
-      <Filters onStateChange={ updateState }
-               onTribeChange={ setTribe }
-               onCountyChange={ setCounty }
-               stateOptions={ stateOptions }
-               tribeOptions={ tribeOptions }
-               countyOptions= { countyOptions }
-               state={ state }
-               county={ county }
-               tribe={ tribe } />
-      <Results geographic={ currentGeographicPrograms }
-               tribal={ currentTribalPrograms }
-               filtered={ state || tribe }/>
+      { loading ? (
+          <Notification message='The Rental Assistance Finder is loading'
+                        type='loading' />
+        ) : (
+          <div>
+            { data.geographic.length ? 
+              (
+                <RentalAssistanceFinder geographic={ data.geographic }
+                                        tribal={ data.tribal }
+                                        tribeOptions={ generateTribalOptions( data.tribal ) }/>
+              ) : (
+                <Notification message='Sorry, we are unable to display results right now.'
+                              explanation='Please refresh this page and try again.'
+                              type='warning' />
+              )
+            }
+          </div>
+        )
+      }
     </div>
   );
 }

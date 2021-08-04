@@ -4,135 +4,134 @@ import {
   filterProgramsByCounty,
   generateCountyOptions,
   generateTribalOptions, 
-  processData,
   sortGeographic,
   sortStatePrograms
 } from '../utils.js';
 
 const tribalPrograms = [
 	{
-    "Type": "Tribal Government",
-    "State": "Oklahoma",
-    "Name": "Apache Tribe of Oklahoma",
-    "Program": "Apache Tribe of Oklahoma Emergency Rental Assistance Program (ERAP)",
-    "URL": "https://apachetribe.org/emergency-rental-assistance-program-erap/",
+    "type": "Tribal Government",
+    "state": "Oklahoma",
+    "name": "Apache Tribe of Oklahoma",
+    "program": "Apache Tribe of Oklahoma Emergency Rental Assistance Program (ERAP)",
+    "url": "https://apachetribe.org/emergency-rental-assistance-program-erap/",
   },
   {
-    "Type": "Tribal Government",
-    "State": "Oklahoma",
-    "Name": "Caddo Nation",
-    "Program": "Caddo Nation Emergency Rental Assistance",
-    "URL": "https://mycaddonation.com/housing",
+    "type": "Tribal Government",
+    "state": "Oklahoma",
+    "name": "Caddo Nation",
+    "program": "Caddo Nation Emergency Rental Assistance",
+    "url": "https://mycaddonation.com/housing",
   },
   {
-    "Type": "Tribal Government",
-    "State": "Oklahoma",
-    "Name": "Cherokee Nation",
-    "Program": "Cherokee Nation Emergency Rental Assistance Program (ERAP)",
-    "URL": "https://www.hacn.org/hacn",
+    "type": "Tribal Government",
+    "state": "Oklahoma",
+    "name": "Cherokee Nation",
+    "program": "Cherokee Nation Emergency Rental Assistance Program (ERAP)",
+    "url": "https://www.hacn.org/hacn",
   }
 ]
 
 const geographicPrograms = [
    {
-    "Type": "State",
-    "State": "Alabama",
-    "Name": "Alabama",
-    "Program": "Alabama Emergency Rental Assistance Program",
-    "URL": "https://eraalabama.com/",
+    "type": "State",
+    "state": "Alabama",
+    "name": "Alabama",
+    "program": "Alabama Emergency Rental Assistance Program",
+    "url": "https://eraalabama.com/",
   },
   {
-    "Type": "County",
-    "State": "Alabama",
-    "Name": "Baldwin County",
-    "Program": "Baldwin County Emergency Rental Assistance Program",
-    "URL": "https://www.baldwinaltogether.org/",
+    "type": "County",
+    "state": "Alabama",
+    "name": "Baldwin County",
+    "program": "Baldwin County Emergency Rental Assistance Program",
+    "url": "https://www.baldwinaltogether.org/",
   },
   {
-    "Type": "City",
-    "State": "Alabama",
-    "Name": "Birmingham",
-    "Program": "Birmingham Emergency Rental Assistance Program",
-    "URL": "https://www.birminghamal.gov/renthelp",
+    "type": "City",
+    "state": "Alabama",
+    "name": "Birmingham",
+    "program": "Birmingham Emergency Rental Assistance Program",
+    "url": "https://www.birminghamal.gov/renthelp",
   },
   {
-    "Type": "State",
-    "State": "California",
-    "Name": "California",
-    "Program": "California's COVID-19 Rent Relief",
-    "URL": "https://landlordtenant.dre.ca.gov/covid_rr/index.html",
+    "type": "State",
+    "state": "California",
+    "name": "California",
+    "program": "California's COVID-19 Rent Relief",
+    "url": "https://landlordtenant.dre.ca.gov/covid_rr/index.html",
   },
   {
-    "Type": "County",
-    "State": "California",
-    "Name": "Alameda County",
-    "Program": "Alameda County Housing Secure Emergency Rental Assistance Program (ACHS-ERAP)",
-    "URL": "https://www.ac-housingsecure.org/",
+    "type": "County",
+    "state": "California",
+    "name": "Alameda County",
+    "program": "Alameda County Housing Secure Emergency Rental Assistance Program (ACHS-ERAP)",
+    "url": "https://www.ac-housingsecure.org/",
   },
   {
-    "Type": "City",
-    "State": "California",
-    "Name": "Anaheim",
-    "Program": "Anaheim Emergency Rental Assistance Program",
-    "URL": "https://www.anaheim.net/5532/Emergency-Rental-Assistance-Program",
+    "type": "City",
+    "state": "California",
+    "name": "Anaheim",
+    "program": "Anaheim Emergency Rental Assistance Program",
+    "url": "https://www.anaheim.net/5532/Emergency-Rental-Assistance-Program",
   }
 ]
 
 const statePrograms = [
   {
-     "Type":"State",
-     "State":"Indiana",
-     "Program":"Indiana Emergency Rental Assistance",
-     "Name":"Indiana",
-     "URL":"https://apply.ihcda.in.gov/submit"
+     "type":"State",
+     "state":"Indiana",
+     "program":"Indiana Emergency Rental Assistance",
+     "name":"Indiana",
+     "url":"https://apply.ihcda.in.gov/submit"
   },
   {
-     "Type":"County",
-     "State":"Indiana",
-     "Program":"Elkhart County Emergency Rental Assistance Program",
-     "Name":"Elkhart County",
-     "URL":"https://elkhartcounty.com/en/residents/elkhart-county-rental-assistance-program/"
+     "type":"County",
+     "state":"Indiana",
+     "program":"Elkhart County Emergency Rental Assistance Program",
+     "name":"Elkhart County",
+     "url":"https://elkhartcounty.com/en/residents/elkhart-county-rental-assistance-program/"
   },
   {
-     "Type":"City",
-     "State":"Indiana",
-     "Program":"Fort Wayne Emergency Rental Assistance Program",
-     "Name":"Fort Wayne",
+     "type":"City",
+     "state":"Indiana",
+     "program":"Fort Wayne Emergency Rental Assistance Program",
+     "name":"Fort Wayne",
      "County":[
         "Allen County"
      ],
-     "URL":"https://www.fwcommunitydevelopment.org/housing/renter-assistance"
+     "url":"https://www.fwcommunitydevelopment.org/housing/renter-assistance"
   },
   {
-     "Type":"County",
-     "State":"Indiana",
-     "Program":"Hamilton County Emergency Rental Assistance Program (ERAP)",
-     "Name":"Hamilton County",
-     "URL":"https://www.hctaindiana.com/era"
+     "type":"County",
+     "state":"Indiana",
+     "program":"Hamilton County Emergency Rental Assistance Program (ERAP)",
+     "name":"Hamilton County",
+     "url":"https://www.hctaindiana.com/era"
   },
   {
-     "Type":"City",
-     "State":"Indiana",
-     "Program":"Indianapolis Rental Assistance Program",
-     "Name":"Indianapolis",
+     "type":"City",
+     "state":"Indiana",
+     "program":"Indianapolis Rental Assistance Program",
+     "name":"Indianapolis",
      "County":[
         "Marion County"
      ],
-     "URL":"https://indyrent.org/"
+     "url":"https://indyrent.org/"
   },
   {
-     "Type":"County",
-     "State":"Indiana",
-     "Program":"Lake County Emergency Assistance (LCERA) program",
-     "Name":"Lake County",
-     "URL":"https://www.lakecountyin.care/"
+     "type":"County",
+     "state":"Indiana",
+     "program":"Lake County Emergency Assistance (LCERA) program",
+     "name":"Lake County",
+     "url":"https://www.lakecountyin.care/"
   },
   {
-     "Type":"County",
-     "State":"Indiana",
-     "Program":"St. Joseph County’s Emergency Rental Assistance (ERA)",
-     "Name":"St. Joseph County",
-     "URL":"https://www.sjcindiana.com/2019/Emergency-Rental-Assistance-Program"
+     "type":"County",
+     "state":"Indiana",
+     "program":"St. Joseph County’s Emergency Rental Assistance (ERA)",
+     "name":"St. Joseph County",
+     "url":"https://www.sjcindiana.com/2019/Emergency-Rental-Assistance-Program"
   }
 ]
 
@@ -179,7 +178,7 @@ describe('module::utils', () => {
         geographicPrograms, 'California', 'Caddo Nation'
       )
       expect( results.length ).toEqual( 3 );
-      expect( results[2]['Name'] ).toEqual( 'California' )
+      expect( results[2].name ).toEqual( 'California' )
     } );
 
     it( 'returns no results when tribe but not state is selected' , () => {
@@ -202,22 +201,14 @@ describe('module::utils', () => {
     it( 'generates options for all tribes' , () => {
       const options = generateTribalOptions( tribalPrograms );
       expect( options.length ).toEqual( 3 );
-      expect( options[0] ).toEqual( tribalPrograms[0]["Name"] )
-    } );
-  } );
-
-  describe( 'processData', () => {
-    it( 'separates tribal and geographic programs' , () => {
-      const [ geographic, tribal ] = processData( allPrograms );
-      expect( geographic ).toEqual( geographicPrograms );
-      expect( tribal ).toEqual( tribalPrograms );
+      expect( options[0] ).toEqual( tribalPrograms[0].name )
     } );
   } );
 
   describe( 'sortStatePrograms', () => {
     it( 'sorts state results alphabetically by type and then name' , () => {
       const sorted = sortStatePrograms( statePrograms );
-      expect( sorted.map( item => ( item['Name'] ) ) ).toEqual(
+      expect( sorted.map( item => ( item.name ) ) ).toEqual(
         ['Fort Wayne', 'Indianapolis', 'Elkhart County',
          'Hamilton County', 'Lake County', 'St. Joseph County',
          'Indiana']
@@ -228,22 +219,22 @@ describe('module::utils', () => {
   describe( 'sortGeographic', () => {
     it( 'sorts cities alphabetically' , () => {
       expect( sortGeographic(   
-        {'Name': 'Indianapolis', 'Type': 'City'},
-        {'Name': 'Fort Wayne', 'Type': 'City'}
+        {'name': 'Indianapolis', 'type': 'City'},
+        {'name': 'Fort Wayne', 'type': 'City'}
       ) ).toEqual( 1 );
     } );
 
     it( 'sorts cities then counties' , () => {
       expect( sortGeographic(   
-        {'Name': 'Indianapolis', 'Type': 'City'},
-        {'Name': 'Allen County', 'Type': 'County'}
+        {'name': 'Indianapolis', 'type': 'City'},
+        {'name': 'Allen County', 'type': 'County'}
       ) ).toEqual( -1 );
     } );
 
     it( 'sorts counties alphabetically' , () => {
       expect( sortGeographic(   
-        {'Name': 'Lake County', 'Type': 'County'},
-        {'Name': 'Allen County', 'Type': 'County'}
+        {'name': 'Lake County', 'type': 'County'},
+        {'name': 'Allen County', 'type': 'County'}
       ) ).toEqual( 1 );
     } );
   } );

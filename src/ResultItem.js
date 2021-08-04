@@ -4,41 +4,39 @@ const ResultItem = ( props ) => {
                     block__sub
                     block__border-bottom
                     block__padded-bottom">
-      <h3>
-        { props.item['Name'] }
-      </h3>
+      <h3>{ props.item.name }</h3>
       <dl>
-        { props.item['Type'] !== 'Tribal Government' &&
+        { props.item.type !== 'Tribal Government' &&
           <div>
             <dt>State/Territory:</dt>
             <dd>
-              { props.item['State'] }
+              { props.item.state }
             </dd>
           </div>
         }
         <div>
           <dt>Program name:</dt>
           <dd>
-            { props.item['Program'] }
+            { props.item.program }
           </dd>
         </div>
         <div>
           <dt>Program type:</dt>
           <dd>
-            { props.item['Type'] }
+            { props.item.type }
           </dd>
         </div>
-        { ( props.item['URL'] || props.item['Phone'] ) &&
+        { ( props.item.url || props.item.phone ) &&
           <div>
             <dt>Get started:&nbsp;</dt>
             <dd>
-              { props.item['URL'] &&
-                <a href={ props.item['URL'] } rel='noreferrer' target='_blank'>
-                  { props.item['URL'] }
+              { props.item.url &&
+                <a href={ props.item.url } rel='noreferrer' target='_blank'>
+                  { props.item.url }
                 </a>
               }
-              { props.item['Phone'] &&
-                <span>{ props.item['Phone'] }</span>
+              { props.item.phone &&
+                <span>{ props.item.phone }</span>
               }
             </dd>
           </div>

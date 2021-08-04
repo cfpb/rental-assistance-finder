@@ -39,7 +39,8 @@ function App() {
                                         tribal={ data.tribal }
                                         tribeOptions={ generateTribalOptions( data.tribal ) }/>
               ) : (
-                <Notification message='The tool is currently unavailable'
+                <Notification message='Sorry, we are unable to display results right now.'
+                              explanation='Please refresh this page and try again.'
                               type='warning' />
               )
             }

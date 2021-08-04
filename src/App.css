@@ -9,7 +9,7 @@
 .App {
   max-width: 41.875rem;
 }
-.App dl {
+.App dl a {
   word-break: break-all;
 }
 

@@ -1,5 +1,23 @@
 import Select from 'react-select';
 
+const customStyles = {
+  control: base => ( {
+    ...base,
+    borderColor: '#919395',
+    borderRadius: 0
+  } ),
+  dropdownIndicator: base => ( {
+    ...base,
+    backgroundColor: '#e7e8e9',
+    color: '#101820 !important'
+  } ),
+  indicatorSeparator: base => ( {
+    ...base,
+    backgroundColor: '#919395',
+    margin: 0
+  } )
+};
+
 const Filter = ( props ) => {
   return (
     <div className="m-form-field">
@@ -20,6 +38,7 @@ const Filter = ( props ) => {
               onChange={ props.onChange }
               options={ props.options }
               placeholder={ props.placeholder }
+              styles={customStyles}
               value={ [ props.value ] }/>
       </div>
     );

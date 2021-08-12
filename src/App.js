@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import { useTranslation } from "react-i18next";
 import { fetchPrograms, generateTribalOptions } from './utils.js';
 import RentalAssistanceFinder from './RentalAssistanceFinder.js';
 import Notification from "./Notification.js";
@@ -10,7 +11,8 @@ function App() {
     tribal: []
   } );
   const [ loading, setLoading ] = useState( true );
- 
+  const { t } = useTranslation();
+
   useEffect( () => {
     // empty array as second argument causes this to run once
     const fetchData = () => {
@@ -29,7 +31,7 @@ function App() {
   return (
     <div className="App">
       { loading ? (
-          <Notification message='The Rental Assistance Finder is loading'
+          <Notification message={ t( 'app.loading' ) }
                         type='loading' />
         ) : (
           <div>
@@ -39,8 +41,8 @@ function App() {
                                         tribal={ data.tribal }
                                         tribeOptions={ generateTribalOptions( data.tribal ) }/>
               ) : (
-                <Notification message='Sorry, we are unable to display results right now.'
-                              explanation='Please refresh this page and try again.'
+                <Notification message={ t( 'app.unavailable_message' ) }
+                              explanation={ t( 'app.unavailable_explanation' ) }
                               type='warning' />
               )
             }

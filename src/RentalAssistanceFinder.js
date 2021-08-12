@@ -15,6 +15,8 @@ function RentalAssistanceFinder( props ) {
     props.geographic, state, county, tribe
   );
 
+  const results = [].concat( geographicPrograms, tribalPrograms );
+
   return (
     <div className="App">
       <Filters county={ county }
@@ -26,8 +28,7 @@ function RentalAssistanceFinder( props ) {
                countyOptions= { countyOptions }
                stateOptions={ stateOptions }
                tribeOptions={ props.tribeOptions }/>
-      <Results geographic={ geographicPrograms }
-               tribal={ tribalPrograms }
+      <Results results={ results }
                filtered={ state || tribe }/>
     </div>
   );

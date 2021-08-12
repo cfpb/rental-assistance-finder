@@ -1,0 +1,54 @@
+{
+  "app": {
+    "loading": "The Rental Assistance Finder is loading",
+    "unavailable_message": "Sorry, we are unable to display results right now.",
+    "unavailable_explanation": "Please refresh this page and try again."
+  },
+  "fields": {
+    "state": "State/Territory",
+    "name": "Program name",
+    "type": "Program type",
+    "contact": "Get started"
+  },
+  "filters": {
+    "legend": "Find rental assistance programs",
+    "county": {
+      "label": "Narrow results by county (optional)",
+      "helperText": "If your county is not listed below, you may still qualify for other programs.",
+      "placeholder": "Select your county"
+    },
+    "state": {
+      "label": "For your state or territory",
+      "placeholder": "Select your state or territory"
+    },
+    "tribe": {
+      "label":"For your tribe or the tribal lands where you live (if applicable)",
+      "helperText": "Only tribes with rental assistance programs are listed.",
+      "placeholder": "Select your tribe or tribal lands"
+    }
+  },
+  "results": {
+    "all": {
+      "count": "Showing 1 total rental assistance program",
+      "count_plural": "Showing {{count}} total rental assistance programs"
+    },
+    "filtered": {
+      "count": "Showing 1 rental assistance program that matches your search",
+      "count_plural": "Showing {{count}} rental assistance programs that match your search"
+    },
+    "none": {
+      "message": "Sorry, we did not find a rental assistance program for your area.",
+      "explanation": "Housing counselors can help you find resources in your area and make a plan.",
+      "links": [
+        {
+          "text": "Find a housing counselor",
+          "url": "https://www.consumerfinance.gov/find-a-housing-counselor/"
+        },
+        {
+          "text": "Get advice about your legal rights",
+          "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-find-an-attorney-in-my-state-en-1549/"
+        }
+      ]
+    }
+  }
+}

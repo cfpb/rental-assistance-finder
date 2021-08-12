@@ -8,9 +8,11 @@ import i18n from './translations/i18n';
 import App from './App';
 
 const root = document.getElementById('rental-assistance-finder');
-const language = root.getAttribute( 'data-language' ) || 'en';
+const language = root.getAttribute( 'data-language' );
 
-i18n.changeLanguage(language);
+if ( language === 'es' ) {
+  i18n.changeLanguage( language );
+} 
 
 ReactDOM.render(
   <React.StrictMode>

@@ -14,7 +14,7 @@
     "legend": "Find rental assistance programs",
     "county": {
       "label": "Narrow results by county (optional)",
-      "helperText": "If your county is not listed below, you may still qualify for other programs.",
+      "helper_text": "If your county is not listed below, you may still qualify for other programs.",
       "placeholder": "Select your county"
     },
     "state": {
@@ -23,7 +23,7 @@
     },
     "tribe": {
       "label":"For your tribe or the tribal lands where you live (if applicable)",
-      "helperText": "Only tribes with rental assistance programs are listed.",
+      "helper_text": "Only tribes with rental assistance programs are listed.",
       "placeholder": "Select your tribe or tribal lands"
     }
   },

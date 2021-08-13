@@ -15,7 +15,8 @@
     "county": {
       "label": "Narrow results by county (optional)",
       "helper_text": "If your county is not listed below, you may still qualify for other programs.",
-      "placeholder": "Select your county"
+      "placeholder": "Select your county",
+      "unlisted": "My county is not listed"    
     },
     "state": {
       "label": "For your state or territory",

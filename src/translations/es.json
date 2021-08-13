@@ -15,7 +15,8 @@
     "county": {
       "label": "Vea resultados por 'county' o condado",
       "helper_text": "Si su condado no aparece listado abajo, usted podría calificar en otros programas.",
-      "placeholder": "Seleccione su condado"
+      "placeholder": "Seleccione su condado",
+      "unlisted": "Mi condado no aparece listado"
     },
     "state": {
       "label": "En su estado o territorio",

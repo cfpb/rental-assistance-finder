@@ -1,3 +1,4 @@
+import Analytics from './Analytics.js';
 const countyUnlisted = 'My county is not listed';
 const programsURL = 'https://files.consumerfinance.gov/a/assets/raf/raf.json';
 
@@ -101,4 +102,8 @@ export const fetchPrograms =  () => {
         throw new Error('Incorrect data format.')
       }
     });
+}
+
+export const sendAnalyticsEvent = ( action, label ) => {
+  Analytics.sendEvent( Analytics.getDataLayerOptions( action, label ) );
 }

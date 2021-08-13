@@ -6,7 +6,8 @@ This tool users to view and filter emergency rental assistance programs funded b
 ## To run locally
 
 1. Clone repo
-2. Run `yarn start` 
+2. Run `npm install`
+3. Run `yarn start` 
 
    This runs the app in the development mode.
    

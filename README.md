@@ -1,12 +1,12 @@
 # Rental assistance finder tool
 
-This tool users to view and filter emergency rental assistance programs funded by the U.S. Department of Treasury’s Emergency Rental Assistance Program.
+This tool allows users to view and filter emergency rental assistance programs funded by the U.S. Department of Treasury’s Emergency Rental Assistance Program.
 
 
 ## To run locally
 
 1. Clone repo
-2. Run `npm install`
+2. Run `yarn`
 3. Run `yarn start` 
 
    This runs the app in the development mode.

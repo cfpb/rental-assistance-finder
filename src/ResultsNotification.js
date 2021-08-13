@@ -19,7 +19,6 @@ const ResultsNotification = ( props ) => {
   } else {
     message = t( "results.all.count", { count: resultsCount } );
   }
-  console.log(links)      
   return (
     <Notification explanation={ explanation }
                   links={ links }

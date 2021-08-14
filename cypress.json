@@ -1,0 +1,7 @@
+{
+  "env": {
+    "cypress-react-selector": {
+      "root": ".App"
+    }
+  }
+}

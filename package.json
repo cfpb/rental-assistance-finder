@@ -23,7 +23,8 @@
     "start": "react-scripts start",
     "build": "node ./build-non-split.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "e2e": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +46,8 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^8.2.0",
+    "cypress-react-selector": "^2.3.11",
     "rewire": "5.0.0"
   }
 }

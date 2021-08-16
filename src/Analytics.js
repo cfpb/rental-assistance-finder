@@ -1,6 +1,6 @@
 const Analytics = {
   tagManagerIsLoaded: false,
-  EVENT_CATEGORY: 'RAFT',
+  EVENT_CATEGORY: 'Page Interaction',
 
   /**
    * Get data layer object.

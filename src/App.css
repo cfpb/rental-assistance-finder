@@ -12,5 +12,6 @@
 .App dl a {
   word-break: break-all;
 }
-
-
+#rental-assistance-finder .m-form-field + .m-form-field {
+  margin-top: 15px;
+}

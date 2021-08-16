@@ -1,0 +1,55 @@
+{
+  "app": {
+    "loading": "El Buscador de Asistencia con la Renta se está cargando",
+    "unavailable_message": "Lo sentimos mucho, no podemos mostrar resultados en este momento.",
+    "unavailable_explanation": "Refresque esta página e inténtelo de nuevo."
+  },
+  "fields": {
+    "state": "Estado/Territorio",
+    "name": "Nombre del programa",
+    "type": "Tipo de programa",
+    "contact": "Comience aquí"
+  },
+  "filters": {
+    "legend": "Encuentre programas de asistencia con la renta",
+    "county": {
+      "label": "Vea resultados por 'county' o condado",
+      "helper_text": "Si su condado no aparece listado abajo, usted podría calificar en otros programas.",
+      "placeholder": "Seleccione su condado",
+      "unlisted": "Mi condado no aparece listado"
+    },
+    "state": {
+      "label": "En su estado o territorio",
+      "placeholder": "Seleccione su estado o territorio"
+    },
+    "tribe": {
+      "label":"En su tribu o tierras tribales donde viva",
+      "helper_text": "Sólo se listan tribus que ofrecen programas de asistencia con la renta.",
+      "placeholder": "Seleccione su tribu o tierras tribales"
+    }
+  },
+  "results": {
+    "all": {
+      "count": "Se muestra un total de 1 programa de asistencia con la renta",
+      "count_plural": "Se muestra un total de {{count}} programas de asistencia con la renta"
+    },
+    "filtered": {
+      "count": "Mostrando 1 resultado de programas de asistencia con la renta según su búsqueda",
+      "count_plural": "Mostrando {{count}} resultados de programas de asistencia con la renta según su búsqueda"
+    },
+    "none": {
+      "message": "Lo sentimos mucho, no encontramos ningún programa de asistencia con la renta en su área.",
+      "explanation": "Los asesores de Vivienda pueden ayudarle a encontrar recursos en su área y a planear.",
+      "links": [
+        {
+          "text": "Encuentre un asesor de Vivienda (en inglés)",
+          "url": "https://www.consumerfinance.gov/find-a-housing-counselor/"
+        },
+        {
+          "text": "Reciba asesoría acerca de sus derechos legales",
+          "url": "https://www.consumerfinance.gov/es/obtener-respuestas/como-encuentro-a-un-abogado-en-mi-estado-es-1549/"
+        }
+      ]
+    }
+  }
+}

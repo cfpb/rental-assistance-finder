@@ -1,4 +1,4 @@
-const countyUnlisted = 'My county is not listed';
+import i18n from './translations/i18n.js';
 const programsURL = 'https://files.consumerfinance.gov/a/assets/raf/raf.json';
 
 export const onlyUnique = ( value, index, self ) => {
@@ -45,6 +45,7 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
 
 export const generateCountyOptions = ( programs ) => {
   let counties = [];
+  let countyUnlisted = i18n.t( 'filters.county.unlisted' );
   programs.forEach( item => {
     if ( item.type === 'County' ) {
       counties.push( item.name );

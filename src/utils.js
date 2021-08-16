@@ -45,7 +45,6 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
 
 export const generateCountyOptions = ( programs ) => {
   let counties = [];
-  let countyUnlisted = i18n.t( 'filters.county.unlisted' );
   programs.forEach( item => {
     if ( item.type === 'County' ) {
       counties.push( item.name );
@@ -54,7 +53,9 @@ export const generateCountyOptions = ( programs ) => {
     } 
   });
   counties = counties.filter( onlyUnique ).sort();
-  counties.unshift( countyUnlisted );
+  if ( counties.length > 0 ) {
+    counties.unshift( i18n.t( 'filters.county.unlisted' ) );
+  }
   return counties;
 }
 
@@ -70,11 +71,11 @@ export const filterProgramsByCounty = ( programs, county ) => {
   )
 }
 
-export const getGeographicData = ( programs, state, county, tribe ) => {
+export const getGeographicData = ( programs, state, county, tribe, countyThreshold = 10 ) => {
   let geographic = filterGeographicPrograms( programs, state, tribe );
   let countyOptions = [];
 
-  if ( state && geographic.length > 5 ) {
+  if ( state && geographic.length > countyThreshold ) {
     countyOptions = generateCountyOptions( geographic );
   }
 
@@ -85,7 +86,7 @@ export const getGeographicData = ( programs, state, county, tribe ) => {
   return [ geographic, countyOptions ];
 }
 
-export const fetchPrograms =  () => {
+export const fetchPrograms = () => {
   return fetch( 
     programsURL 
   ).then( 

@@ -1,5 +1,5 @@
 {
-  "name": "erap-lookup",
+  "name": "@cfpb/erap-lookup",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,6 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "node ./build-non-split.js",
+    "prepare": "cp build/static/js/main.js dist/ && cp build/static/css/main.*.css dist/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -46,5 +47,20 @@
   },
   "devDependencies": {
     "rewire": "5.0.0"
-  }
+  },
+  "description": "This tool allows users to view and filter emergency rental assistance programs funded by the U.S. Department of Treasury’s Emergency Rental Assistance Program.",
+  "main": "dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfpb/rental-assistance-finder.git"
+  },
+  "keywords": [
+    "CFPB"
+  ],
+  "author": "CFPB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cfpb/rental-assistance-finder/issues"
+  },
+  "homepage": "https://github.com/cfpb/rental-assistance-finder#readme"
 }

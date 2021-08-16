@@ -9,7 +9,7 @@ import App from './App';
 
 const root = document.getElementById('rental-assistance-finder');
 const language = root.getAttribute( 'data-language' );
-const countyThreshold = root.getAttribute( 'data-county-threshold' );
+const countyThreshold = parseInt( root.getAttribute( 'data-county-threshold' ) );
 
 if ( language === 'es' ) {
   i18n.changeLanguage( language );
@@ -17,7 +17,7 @@ if ( language === 'es' ) {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App countyThreshold={ countyThreshold ? countyThreshold : undefined }/>
+    <App countyThreshold={ !isNaN( countyThreshold ) ? countyThreshold : undefined }/>
   </React.StrictMode>,
   root
 );

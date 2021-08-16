@@ -5,7 +5,7 @@ import { fetchPrograms, generateTribalOptions } from './utils.js';
 import RentalAssistanceFinder from './RentalAssistanceFinder.js';
 import Notification from "./Notification.js";
 
-function App() {
+function App( props ) {
   const [ data, setData ] = useState( {
     geographic: [],
     tribal: []
@@ -37,7 +37,8 @@ function App() {
           <div>
             { data.geographic.length ? 
               (
-                <RentalAssistanceFinder geographic={ data.geographic }
+                <RentalAssistanceFinder countyThreshold={ props.countyThreshold }
+                                        geographic={ data.geographic }
                                         tribal={ data.tribal }
                                         tribeOptions={ generateTribalOptions( data.tribal ) }/>
               ) : (

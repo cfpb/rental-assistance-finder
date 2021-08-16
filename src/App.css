@@ -1,15 +1,15 @@
-.m-notification .cf-icon-svg {
+#rental-assistance-finder .m-notification .cf-icon-svg {
   font-size: 1.125em;
 }
-.cf-icon-svg {
+#rental-assistance-finder .cf-icon-svg {
     height: 1.1875em;
     vertical-align: text-top;
     max-width: 1em;
 }
-.App {
+#rental-assistance-finder .App {
   max-width: 41.875rem;
 }
-.App dl a {
+#rental-assistance-finder .App dl a {
   word-break: break-all;
 }
 #rental-assistance-finder .m-form-field + .m-form-field {

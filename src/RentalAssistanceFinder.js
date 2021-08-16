@@ -12,7 +12,7 @@ function RentalAssistanceFinder( props ) {
   const tribalPrograms = filterTribalPrograms( props.tribal, state, tribe );
 
   const [ geographicPrograms, countyOptions ] = getGeographicData(
-    props.geographic, state, county, tribe
+    props.geographic, state, county, tribe, props.countyThreshold
   );
 
   const results = [].concat( geographicPrograms, tribalPrograms );

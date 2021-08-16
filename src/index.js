@@ -17,7 +17,7 @@ if ( language === 'es' ) {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App countyThreshold={ !isNaN( countyThreshold ) ? countyThreshold : undefined }/>
+    <App countyThreshold={ isNaN( countyThreshold ) ? undefined : countyThreshold }/>
   </React.StrictMode>,
   root
 );

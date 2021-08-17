@@ -49,7 +49,6 @@
     "whatwg-fetch": "^3.6.2"
   },
   "description": "This tool allows users to view and filter emergency rental assistance programs funded by the U.S. Department of Treasury’s Emergency Rental Assistance Program.",
-  "main": "dist/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cfpb/rental-assistance-finder.git"
@@ -62,5 +61,5 @@
   "bugs": {
     "url": "https://github.com/cfpb/rental-assistance-finder/issues"
   },
-  "homepage": "https://github.com/cfpb/rental-assistance-finder#readme"
+  "homepage": "https://github.com/cfpb/rental-assistance-finder"
 }

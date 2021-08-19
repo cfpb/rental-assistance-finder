@@ -1,25 +1,12 @@
 {
-  "name": "erap-lookup",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@cfpb/rental-assistance-finder",
+  "version": "0.2.0",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "polyfill-array-includes": "^2.0.0",
-    "promise-polyfill": "8.2.0",
-    "react": "^17.0.2",
-    "react-app-polyfill": "^2.0.0",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "react-select": "4.3.1",
-    "symbol-es6": "^0.1.2",
-    "web-vitals": "^1.0.1",
-    "whatwg-fetch": "^3.6.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "node ./build-non-split.js",
+    "prepack": "cp build/static/js/main.js dist/ && cp build/static/css/main.*.css dist/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -29,6 +16,7 @@
       "react-app/jest"
     ]
   },
+  "files": [ "dist/*"],
   "browserslist": {
     "production": [
       "last 2 versions",
@@ -43,6 +31,35 @@
     ]
   },
   "devDependencies": {
-    "rewire": "5.0.0"
-  }
+    "rewire": "5.0.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "i18next": "^20.4.0",
+    "polyfill-array-includes": "^2.0.0",
+    "promise-polyfill": "8.2.0",
+    "react": "^17.0.2",
+    "react-app-polyfill": "^2.0.0",
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.11.4",
+    "react-scripts": "4.0.3",
+    "react-select": "4.3.1",
+    "symbol-es6": "^0.1.2",
+    "web-vitals": "^1.0.1",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "description": "This tool allows users to view and filter emergency rental assistance programs funded by the U.S. Department of Treasury’s Emergency Rental Assistance Program.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfpb/rental-assistance-finder.git"
+  },
+  "keywords": [
+    "CFPB"
+  ],
+  "author": "CFPB",
+  "license": "CC0",
+  "bugs": {
+    "url": "https://github.com/cfpb/rental-assistance-finder/issues"
+  },
+  "homepage": "https://github.com/cfpb/rental-assistance-finder"
 }

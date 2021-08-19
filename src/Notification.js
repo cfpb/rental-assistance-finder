@@ -6,10 +6,11 @@ const iconMap = {
 }
 
 const Notification = ( props ) => {
+  const typeClass = props.type ? `m-notification__${ props.type }` : '';
   return (
     <div className={`m-notification 
                      m-notification__visible 
-                     m-notification__${ props.type }`}>
+                     ${ typeClass }`}>
       { props.type && iconMap[props.type]}
       <div className="m-notification_content"
            role={ ['warning', 'error'].indexOf( props.type ) !== -1 ?  'alert' : undefined }>

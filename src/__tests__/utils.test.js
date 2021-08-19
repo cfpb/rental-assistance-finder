@@ -4,6 +4,7 @@ import {
   filterProgramsByCounty,
   generateCountyOptions,
   generateTribalOptions, 
+  getGeographicData,
   sortGeographic,
   sortStatePrograms
 } from '../utils.js';
@@ -140,7 +141,7 @@ const allPrograms = [...geographicPrograms, ...tribalPrograms]
 describe('module::utils', () => {
 
   describe( 'filterTribalPrograms', () => {
-    it( 'returns result for tribe selection' , () => {
+    it( 'returns result for tribe selection', () => {
       const results = filterTribalPrograms( 
         tribalPrograms, 'Oklahoma', 'Caddo Nation'
       )
@@ -148,7 +149,7 @@ describe('module::utils', () => {
       expect( results[0] ).toEqual( tribalPrograms[1] )
     } );
 
-    it( 'returns no results for unmatched tribe selection' , () => {
+    it( 'returns no results for unmatched tribe selection', () => {
       const results = filterTribalPrograms( 
         tribalPrograms, 'Oklahoma', 'Nation'
       )
@@ -156,14 +157,14 @@ describe('module::utils', () => {
       expect( results.length ).toEqual( 0 );
     } );
 
-    it( 'returns no results when state but not tribe is selected' , () => {
+    it( 'returns no results when state but not tribe is selected', () => {
       const results = filterTribalPrograms( 
         tribalPrograms, 'California', ''
       )
       expect( results.length ).toEqual( 0 );
     } );
 
-    it( 'returns all results if no state or tribe is selected' , () => {
+    it( 'returns all results if no state or tribe is selected', () => {
       const results = filterTribalPrograms( 
         tribalPrograms, '', ''
       )
@@ -173,7 +174,7 @@ describe('module::utils', () => {
   } );
 
   describe( 'filterGeographicPrograms', () => {
-    it( 'returns results for state selection' , () => {
+    it( 'returns results for state selection', () => {
       const results = filterGeographicPrograms( 
         geographicPrograms, 'California', 'Caddo Nation'
       )
@@ -181,14 +182,14 @@ describe('module::utils', () => {
       expect( results[2].name ).toEqual( 'California' )
     } );
 
-    it( 'returns no results when tribe but not state is selected' , () => {
+    it( 'returns no results when tribe but not state is selected', () => {
       const results = filterGeographicPrograms( 
         geographicPrograms, '', 'Caddo Nation'
       )
       expect( results.length ).toEqual( 0 );
     } );
 
-    it( 'returns all results when neither tribe nor state is selected' , () => {
+    it( 'returns all results when neither tribe nor state is selected', () => {
       const results = filterGeographicPrograms( 
         geographicPrograms, '', ''
       )
@@ -198,7 +199,7 @@ describe('module::utils', () => {
   } );
 
   describe( 'generateTribalOptions', () => {
-    it( 'generates options for all tribes' , () => {
+    it( 'generates options for all tribes', () => {
       const options = generateTribalOptions( tribalPrograms );
       expect( options.length ).toEqual( 3 );
       expect( options[0] ).toEqual( tribalPrograms[0].name )
@@ -206,7 +207,7 @@ describe('module::utils', () => {
   } );
 
   describe( 'sortStatePrograms', () => {
-    it( 'sorts state results alphabetically by type and then name' , () => {
+    it( 'sorts state results alphabetically by type and then name', () => {
       const sorted = sortStatePrograms( statePrograms );
       expect( sorted.map( item => ( item.name ) ) ).toEqual(
         ['Fort Wayne', 'Indianapolis', 'Elkhart County',
@@ -217,25 +218,53 @@ describe('module::utils', () => {
   } );
 
   describe( 'sortGeographic', () => {
-    it( 'sorts cities alphabetically' , () => {
+    it( 'sorts cities alphabetically', () => {
       expect( sortGeographic(   
         {'name': 'Indianapolis', 'type': 'City'},
         {'name': 'Fort Wayne', 'type': 'City'}
       ) ).toEqual( 1 );
     } );
 
-    it( 'sorts cities then counties' , () => {
+    it( 'sorts cities then counties', () => {
       expect( sortGeographic(   
         {'name': 'Indianapolis', 'type': 'City'},
         {'name': 'Allen County', 'type': 'County'}
       ) ).toEqual( -1 );
     } );
 
-    it( 'sorts counties alphabetically' , () => {
+    it( 'sorts counties alphabetically', () => {
       expect( sortGeographic(   
         {'name': 'Lake County', 'type': 'County'},
         {'name': 'Allen County', 'type': 'County'}
       ) ).toEqual( 1 );
     } );
   } );
+
+  describe( 'getGeographicData', () => {
+    it( 'returns counties when county threshold met', () => {
+      const [ geographicResults, countyOptionResults ] = getGeographicData (  
+        statePrograms, 'Indiana', '', '', 5 
+      )
+      expect( countyOptionResults ).not.toEqual( [] );
+    } );
+    it( 'does not return counties when county threshold not met', () => {
+      const [ geographicResults, countyOptionResults ] = getGeographicData (  
+        statePrograms, 'Indiana', '', '', 20 
+      )
+      expect( countyOptionResults ).toEqual( [] );
+    } );
+    it( 'does not return counties when default county threshold of 10 not met', () => {
+      const [ geographicResults, countyOptionResults ] = getGeographicData (  
+        statePrograms, 'Indiana', '', '' 
+      )
+      expect( countyOptionResults ).toEqual( [] );
+    } );
+    it( 'does not return counties if no counties even if county threshold met', () => {
+      const [ geographicResults, countyOptionResults ] = getGeographicData (  
+        [{'name': 'Indiana', 'type': 'State'}], 'Indiana', '', '', 0 
+      )
+      expect( countyOptionResults ).toEqual( [] );
+    } );
+  } );
+
 })

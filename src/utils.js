@@ -1,4 +1,4 @@
-const countyUnlisted = 'My county is not listed';
+import i18n from './translations/i18n.js';
 const programsURL = 'https://files.consumerfinance.gov/a/assets/raf/raf.json';
 
 export const onlyUnique = ( value, index, self ) => {
@@ -53,7 +53,9 @@ export const generateCountyOptions = ( programs ) => {
     } 
   });
   counties = counties.filter( onlyUnique ).sort();
-  counties.unshift( countyUnlisted );
+  if ( counties.length > 0 ) {
+    counties.unshift( i18n.t( 'filters.county.unlisted' ) );
+  }
   return counties;
 }
 
@@ -69,11 +71,11 @@ export const filterProgramsByCounty = ( programs, county ) => {
   )
 }
 
-export const getGeographicData = ( programs, state, county, tribe ) => {
+export const getGeographicData = ( programs, state, county, tribe, countyThreshold = 10 ) => {
   let geographic = filterGeographicPrograms( programs, state, tribe );
   let countyOptions = [];
 
-  if ( state && geographic.length > 5 ) {
+  if ( state && geographic.length > countyThreshold ) {
     countyOptions = generateCountyOptions( geographic );
   }
 
@@ -84,7 +86,7 @@ export const getGeographicData = ( programs, state, county, tribe ) => {
   return [ geographic, countyOptions ];
 }
 
-export const fetchPrograms =  () => {
+export const fetchPrograms = () => {
   return fetch( 
     programsURL 
   ).then( 

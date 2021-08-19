@@ -1,4 +1,5 @@
 const ResultItem = ( props ) => {
+  const fields = props.fields;
   return (
     <div className="block
                     block__sub
@@ -8,27 +9,27 @@ const ResultItem = ( props ) => {
       <dl>
         { props.item.type !== 'Tribal Government' &&
           <div>
-            <dt>State/Territory:</dt>
+            <dt>{ fields.state }:</dt>
             <dd>
               { props.item.state }
             </dd>
           </div>
         }
         <div>
-          <dt>Program name:</dt>
+          <dt>{ fields.name }:</dt>
           <dd>
             { props.item.program }
           </dd>
         </div>
         <div>
-          <dt>Program type:</dt>
+          <dt>{ fields.type }:</dt>
           <dd>
             { props.item.type }
           </dd>
         </div>
         { ( props.item.url || props.item.phone ) &&
           <div>
-            <dt>Get started:&nbsp;</dt>
+            <dt>{ fields.contact }:&nbsp;</dt>
             <dd>
               { props.item.url &&
                 <a href={ props.item.url } rel='noreferrer' target='_blank'>

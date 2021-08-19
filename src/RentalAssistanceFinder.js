@@ -12,8 +12,10 @@ function RentalAssistanceFinder( props ) {
   const tribalPrograms = filterTribalPrograms( props.tribal, state, tribe );
 
   const [ geographicPrograms, countyOptions ] = getGeographicData(
-    props.geographic, state, county, tribe
+    props.geographic, state, county, tribe, props.countyThreshold
   );
+
+  const results = [].concat( geographicPrograms, tribalPrograms );
 
   return (
     <div className="App">
@@ -26,8 +28,7 @@ function RentalAssistanceFinder( props ) {
                countyOptions= { countyOptions }
                stateOptions={ stateOptions }
                tribeOptions={ props.tribeOptions }/>
-      <Results geographic={ geographicPrograms }
-               tribal={ tribalPrograms }
+      <Results results={ results }
                filtered={ state || tribe }/>
     </div>
   );

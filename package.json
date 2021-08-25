@@ -1,8 +1,38 @@
 {
-  "name": "erap-lookup",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@cfpb/rental-assistance-finder",
+  "version": "0.2.0",
   "dependencies": {
+  },
+  "scripts": {
+    "start": "ESLINT_NO_DEV_ERRORS=true react-scripts start",
+    "build": "DISABLE_ESLINT_PLUGIN=true node ./build-non-split.js",
+    "prepack": "cp build/static/js/main.js dist/ && cp build/static/css/main.*.css dist/",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "e2e": "cypress open"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "files": [ "dist/*"],
+  "browserslist": {
+    "production": [
+      "last 2 versions",
+      "> 0.5%",
+      "ie >= 11",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "rewire": "5.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -19,35 +49,18 @@
     "web-vitals": "^1.0.1",
     "whatwg-fetch": "^3.6.2"
   },
-  "scripts": {
-    "start": "ESLINT_NO_DEV_ERRORS=true react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN=true node ./build-non-split.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "e2e": "cypress open"
+  "description": "This tool allows users to view and filter emergency rental assistance programs funded by the U.S. Department of Treasury’s Emergency Rental Assistance Program.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfpb/rental-assistance-finder.git"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "keywords": [
+    "CFPB"
+  ],
+  "author": "CFPB",
+  "license": "CC0",
+  "bugs": {
+    "url": "https://github.com/cfpb/rental-assistance-finder/issues"
   },
-  "browserslist": {
-    "production": [
-      "last 2 versions",
-      "> 0.5%",
-      "ie >= 11",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "cypress": "^8.2.0",
-    "cypress-react-selector": "^2.3.11",
-    "rewire": "5.0.0"
-  }
+  "homepage": "https://github.com/cfpb/rental-assistance-finder"
 }

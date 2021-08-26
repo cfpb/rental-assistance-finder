@@ -19,7 +19,6 @@ function Filters( props ) {
               value={ props.state }/>
       { props.countyOptions.length > 0 && 
         <Filter id="county-select"
-                helperText={ t( 'filters.county.helper_text' ) }
                 label={ t( 'filters.county.label' ) }
                 onChange={ props.setCounty }
                 options={ props.countyOptions }

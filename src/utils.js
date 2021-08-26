@@ -1,6 +1,7 @@
 import Analytics from './Analytics.js';
 import i18n from './translations/i18n.js';
 const programsURL = 'https://files.consumerfinance.gov/a/assets/raf/raf.json';
+import counties from './data/counties.json';
 
 export const onlyUnique = ( value, index, self ) => {
   return self.indexOf( value ) === index;
@@ -44,20 +45,11 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
   }
 }
 
-export const generateCountyOptions = ( programs ) => {
-  let counties = [];
-  programs.forEach( item => {
-    if ( item.type === 'County' ) {
-      counties.push( item.name );
-    } else if ( item.type === 'City' && item.county ) {
-      counties = counties.concat( item.county );
-    } 
-  });
-  counties = counties.filter( onlyUnique ).sort();
-  if ( counties.length > 0 ) {
-    counties.unshift( i18n.t( 'filters.county.unlisted' ) );
-  }
-  return counties;
+export const generateCountyOptions = ( state ) => {
+  let vals = counties[state];
+  return vals.map( 
+    item => ( item + ' County' )
+  )
 }
 
 export const filterProgramsByCounty = ( programs, county ) => {
@@ -72,12 +64,12 @@ export const filterProgramsByCounty = ( programs, county ) => {
   )
 }
 
-export const getGeographicData = ( programs, state, county, tribe, countyThreshold = 10 ) => {
+export const getGeographicData = ( programs, state, county, tribe ) => {
   let geographic = filterGeographicPrograms( programs, state, tribe );
   let countyOptions = [];
 
-  if ( state && geographic.length > countyThreshold ) {
-    countyOptions = generateCountyOptions( geographic );
+  if ( state && geographic.length > 1 ) {
+    countyOptions = generateCountyOptions( state );
   }
 
   if ( county ) {

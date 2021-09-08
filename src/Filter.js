@@ -16,6 +16,10 @@ const customStyles = {
     ...base,
     backgroundColor: '#919395',
     margin: 0
+  } ),
+  placeholder: base => ( {
+    ...base,
+    color: '#585d61'
   } )
 };
 

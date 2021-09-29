@@ -37,7 +37,7 @@
     },
     "single_geographic": {
       "message": "1 program found.",
-      "explanation": "We found a program that may be providing rental assistance to your area."
+      "explanation": "We found a program that may provide rental assistance to your area."
     },
     "filtered": {
       "count": "Showing 1 program that may serve your area.",

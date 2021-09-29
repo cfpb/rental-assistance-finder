@@ -7,8 +7,8 @@ import ReactDOM from 'react-dom';
 import i18n from './translations/i18n'; 
 import App from './App';
 import {
-	getCountyThreshold,
-	setAppLanguage
+  getCountyThreshold,
+  setAppLanguage
 } from './utils.js';
 
 const container = document.getElementById( 'rental-assistance-finder' );

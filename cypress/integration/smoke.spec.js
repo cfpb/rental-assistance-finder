@@ -1,5 +1,6 @@
 /* global cy, describe, beforeEach, it, expect */
 
+// Smoke tests use live data from API
 let totalNumResults;
 
 describe( 'Rental assistance programs app', () => {

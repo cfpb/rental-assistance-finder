@@ -1,5 +1,5 @@
 import Select from 'react-select';
-import { sendAnalyticsEvent } from './utils.js';
+import Analytics from './Analytics.js';
 
 const customStyles = {
   control: base => ( {
@@ -26,7 +26,7 @@ const customStyles = {
 const Filter = ( props ) => {
   const changeHandler = ( val ) => {
     props.onChange( val );
-    sendAnalyticsEvent( props.id, val );
+    Analytics.sendEvent( Analytics.getDataLayerOptions( props.id, val ) );
   }
 
   return (

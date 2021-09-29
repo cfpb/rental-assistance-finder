@@ -1,10 +1,13 @@
-import { 
+import {
+  fetchPrograms,
   filterGeographicPrograms,
   filterTribalPrograms,
   filterProgramsByCounty,
   generateCountyOptions,
-  generateTribalOptions, 
+  generateTribalOptions,
+  getCountyThreshold,
   getGeographicData,
+  setAppLanguage,
   sortGeographic,
   sortStatePrograms
 } from '../utils.js';
@@ -78,7 +81,7 @@ const geographicPrograms = [
   }
 ]
 
-const statePrograms = [
+const IndianaPrograms = [
   {
      "type":"State",
      "state":"Indiana",
@@ -98,8 +101,8 @@ const statePrograms = [
      "state":"Indiana",
      "program":"Fort Wayne Emergency Rental Assistance Program",
      "name":"Fort Wayne",
-     "County":[
-        "Allen County"
+     "county":[
+        "Hamilton County"
      ],
      "url":"https://www.fwcommunitydevelopment.org/housing/renter-assistance"
   },
@@ -115,7 +118,7 @@ const statePrograms = [
      "state":"Indiana",
      "program":"Indianapolis Rental Assistance Program",
      "name":"Indianapolis",
-     "County":[
+     "county":[
         "Marion County"
      ],
      "url":"https://indyrent.org/"
@@ -139,6 +142,98 @@ const statePrograms = [
 const allPrograms = [...geographicPrograms, ...tribalPrograms]
 
 describe('module::utils', () => {
+
+  describe( 'fetchPrograms', () => {
+    it('returns data when successful', () => {
+      const data = { geographic: [], tribal: [] };
+      fetch.mockResponseOnce( JSON.stringify( data ) );
+      expect( fetchPrograms() ).resolves.toEqual( data );
+    });
+
+    it('throws an error when data is not in correct format', () => {
+      fetch.mockResponseOnce( '{}' );
+      expect( fetchPrograms() ).rejects.toThrow( 'Incorrect data format.' );
+    });
+
+    it('throws an error when response is not ok', () => {
+      fetch.mockResponseOnce(
+        '{}',
+        { status: 500, headers: { 'content-type': 'application/json' } }
+      );
+      expect( fetchPrograms() ).rejects.toThrow( 'Data load failure.' );
+    });
+  } );
+
+  describe( 'filterGeographicPrograms', () => {
+    it( 'returns results for state selection', () => {
+      const results = filterGeographicPrograms( 
+        geographicPrograms, 'California', 'Caddo Nation'
+      )
+      expect( results.length ).toEqual( 3 );
+      expect( results[2].name ).toEqual( 'California' )
+    } );
+
+    it( 'returns no results when tribe but not state is selected', () => {
+      const results = filterGeographicPrograms( 
+        geographicPrograms, '', 'Caddo Nation'
+      )
+      expect( results.length ).toEqual( 0 );
+    } );
+
+    it( 'returns all results when neither tribe nor state is selected', () => {
+      const results = filterGeographicPrograms( 
+        geographicPrograms, '', ''
+      )
+      expect( results ).toEqual( geographicPrograms );
+    } );
+
+  } );
+
+  describe( 'filterProgramsByCounty', () => {
+    it( 'returns state if no other matches', () => {
+      const results = filterProgramsByCounty( IndianaPrograms, 'Adams' );
+      expect( results.length ).toEqual( 1 );
+      expect( results[0].name ).toEqual( 'Indiana' );
+    } );
+
+    it( 'returns state and county if a county match exists', () => {
+      const results = filterProgramsByCounty( IndianaPrograms, 'Lake' );
+      expect( results.length ).toEqual( 2 );
+      expect( results[0].name ).toEqual( 'Indiana' );
+      expect( results[1].name ).toEqual( 'Lake County' );
+    } );
+
+    it( 'returns state and city if a city match exists', () => {
+      const results = filterProgramsByCounty( IndianaPrograms, 'Marion' );
+      expect( results.length ).toEqual( 2 );
+      expect( results[0].name ).toEqual( 'Indiana' );
+      expect( results[1].name ).toEqual( 'Indianapolis' );
+    } );
+
+    it( 'returns state, county, and city if both city and county matches exist', () => {
+      const results = filterProgramsByCounty( IndianaPrograms, 'Hamilton' );
+      expect( results.length ).toEqual( 3 );
+      expect( results[0].name ).toEqual( 'Indiana' );
+      expect( results[1].name ).toEqual( 'Fort Wayne' );
+      expect( results[2].name ).toEqual( 'Hamilton County' );
+    } );
+
+    it( 'returns state, county, and city matches for county equivalent', () => {
+      const programs = [
+        {type:'State', 'name': 'Louisiana'},
+        {type:'County', 'name': 'East Baton Rouge Parish'},
+        {type:'County', 'name': 'Orleans Parish'},
+        {type:'City', 'name': 'New Orleans', county:['Orleans Parish']},
+        {type:'City', 'name': 'Baton Rouge', county:['East Baton Rouge Parish']},
+      ]
+      const results = filterProgramsByCounty( programs, 'Orleans Parish' );
+      expect( results.length ).toEqual( 3 );
+      expect( results[0].name ).toEqual( 'Louisiana' );
+      expect( results[1].name ).toEqual( 'Orleans Parish' );
+      expect( results[2].name ).toEqual( 'New Orleans' );
+    } );
+
+  } );
 
   describe( 'filterTribalPrograms', () => {
     it( 'returns result for tribe selection', () => {
@@ -173,29 +268,20 @@ describe('module::utils', () => {
     } );
   } );
 
-  describe( 'filterGeographicPrograms', () => {
-    it( 'returns results for state selection', () => {
-      const results = filterGeographicPrograms( 
-        geographicPrograms, 'California', 'Caddo Nation'
-      )
-      expect( results.length ).toEqual( 3 );
-      expect( results[2].name ).toEqual( 'California' )
+  describe( 'generateCountyOptions', () => {
+    it( 'returns options for state when they exist', () => {
+      const countyData = {Indiana: ['A', 'B']}
+      const options = generateCountyOptions( countyData, 'Indiana' );
+      expect( options.length ).toEqual( 2 );
+      expect( options ).toEqual( countyData['Indiana'] );
     } );
 
-    it( 'returns no results when tribe but not state is selected', () => {
-      const results = filterGeographicPrograms( 
-        geographicPrograms, '', 'Caddo Nation'
-      )
-      expect( results.length ).toEqual( 0 );
+    it( 'returns options by state', () => {
+      const countyData = {}
+      const options = generateCountyOptions( countyData, 'Indiana' );
+      expect( options.length ).toEqual( 0 );
+      expect( options ).toEqual( [] );
     } );
-
-    it( 'returns all results when neither tribe nor state is selected', () => {
-      const results = filterGeographicPrograms( 
-        geographicPrograms, '', ''
-      )
-      expect( results ).toEqual( geographicPrograms );
-    } );
-
   } );
 
   describe( 'generateTribalOptions', () => {
@@ -206,14 +292,27 @@ describe('module::utils', () => {
     } );
   } );
 
-  describe( 'sortStatePrograms', () => {
-    it( 'sorts state results alphabetically by type and then name', () => {
-      const sorted = sortStatePrograms( statePrograms );
-      expect( sorted.map( item => ( item.name ) ) ).toEqual(
-        ['Fort Wayne', 'Indianapolis', 'Elkhart County',
-         'Hamilton County', 'Lake County', 'St. Joseph County',
-         'Indiana']
+  describe( 'getGeographicData', () => {
+    it( 'returns counties when county threshold met', () => {
+      const countyData = {Indiana: ['County 1', 'County 2']};
+      const [ geographicResults, countyOptionResults ] = getGeographicData (  
+        IndianaPrograms, countyData, 'Indiana', '', '', IndianaPrograms.length
       )
+      expect( countyOptionResults ).toEqual( countyData['Indiana'] );
+    } );
+    it( 'does not return counties when county threshold not met', () => {
+      const countyData = {Indiana: ['County 1', 'County 2']}
+      const [ geographicResults, countyOptionResults ] = getGeographicData (  
+        IndianaPrograms, countyData, 'Indiana', '', '', IndianaPrograms.length + 1
+      )
+      expect( countyOptionResults ).toEqual( [] );
+    } );
+    it( 'does not return counties if no counties even if county threshold met', () => {
+      const countyData = {};
+      const [ geographicResults, countyOptionResults ] = getGeographicData (  
+        IndianaPrograms, countyData, 'Indiana', '', '', 0
+      )
+      expect( countyOptionResults ).toEqual( [] );
     } );
   } );
 
@@ -240,31 +339,75 @@ describe('module::utils', () => {
     } );
   } );
 
-  describe( 'getGeographicData', () => {
-    it( 'returns counties when county threshold met', () => {
-      const [ geographicResults, countyOptionResults ] = getGeographicData (  
-        statePrograms, 'Indiana', '', '', 5 
+  describe( 'sortStatePrograms', () => {
+    it( 'sorts state results alphabetically by type and then name', () => {
+      const sorted = sortStatePrograms( IndianaPrograms );
+      expect( sorted.map( item => ( item.name ) ) ).toEqual(
+        ['Fort Wayne', 'Indianapolis', 'Elkhart County',
+         'Hamilton County', 'Lake County', 'St. Joseph County',
+         'Indiana']
       )
-      expect( countyOptionResults ).not.toEqual( [] );
     } );
-    it( 'does not return counties when county threshold not met', () => {
-      const [ geographicResults, countyOptionResults ] = getGeographicData (  
-        statePrograms, 'Indiana', '', '', 20 
-      )
-      expect( countyOptionResults ).toEqual( [] );
+  } );
+
+  describe( 'getCountyThreshold', () => {
+    const div = document.createElement( 'div' );
+    div.id = 'container';
+    document.body.appendChild( div );
+    
+    it( 'returns numerical value', () => {
+      div.setAttribute('data-county-threshold', 1000);
+      expect( getCountyThreshold( div ) ).toEqual( 1000 );
     } );
-    it( 'does not return counties when default county threshold of 10 not met', () => {
-      const [ geographicResults, countyOptionResults ] = getGeographicData (  
-        statePrograms, 'Indiana', '', '' 
-      )
-      expect( countyOptionResults ).toEqual( [] );
+
+    it( 'returns integer if value is decimal', () => {
+      div.setAttribute('data-county-threshold', 10.5);
+      expect( getCountyThreshold( div ) ).toEqual( 10 );
     } );
-    it( 'does not return counties if no counties even if county threshold met', () => {
-      const [ geographicResults, countyOptionResults ] = getGeographicData (  
-        [{'name': 'Indiana', 'type': 'State'}], 'Indiana', '', '', 0 
-      )
-      expect( countyOptionResults ).toEqual( [] );
+
+    it( 'returns integer if value is numerical string', () => {
+      div.setAttribute('data-county-threshold', '120');
+      expect( getCountyThreshold( div ) ).toEqual( 120 );
     } );
+
+    it( 'returns undefined if value is not numerical', () => {
+      div.setAttribute('data-county-threshold', 'asdf');
+      expect( getCountyThreshold( div ) ).toEqual( undefined );
+    } );
+
+    it( 'returns undefined if attribute does not exist', () => {
+      div.removeAttribute('data-county-threshold');
+      expect( getCountyThreshold( div ) ).toEqual( undefined );
+    } );
+
+    it( 'returns undefined if container does not exist', () => {
+      expect( getCountyThreshold() ).toEqual( undefined );
+    } );
+
+    it( 'returns undefined if container is not an HTML element', () => {
+      expect( getCountyThreshold( 'string' ) ).toEqual( undefined );
+    } );
+    
+  } );
+
+  describe( 'setAppLanguage', () => {
+    const div = document.createElement( 'div' );
+    div.id = 'container';
+    document.body.appendChild( div );
+    const i18n = { changeLanguage: jest.fn() };
+
+    it( 'does not call change language function if data attribute is not Spanish', () => {
+      div.setAttribute('data-language', 'en');
+      setAppLanguage( div, i18n );
+      expect( i18n.changeLanguage ).not.toHaveBeenCalled();
+    } );
+    
+    it( 'calls change language function if data attribute is Spanish', () => {
+      div.setAttribute('data-language', 'es');
+      setAppLanguage( div, i18n );
+      expect( i18n.changeLanguage ).toHaveBeenCalledWith( 'es' );
+    } );
+
   } );
 
 })

@@ -6,7 +6,7 @@ i18n.changeLanguage( 'es' );
 describe( 'Status message translations', () => {
 
   beforeEach( () => {
-    cy.intercept('http://localhost:3000', { fixture: 'es.html' });
+    cy.intercept( 'http://localhost:3000', { fixture: 'es.html' } );
   } );
 
   it( 'shows a loading notification while waiting for api response', () => {

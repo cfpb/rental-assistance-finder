@@ -41,6 +41,8 @@ const Filter = ( props ) => {
         }
       </label>
       <Select aria-label={ props.label }
+              className={ props.className }
+              classNamePrefix="react-select"
               getOptionLabel={ label => label }
               getOptionValue={ value => value }
               inputId={ props.id }

@@ -118,7 +118,7 @@ describe( 'Rental assistance program filtering', () => {
       .should( 'exist' )
       .click()
       .react( 'Option' )
-      .should( 'have.length', 144 )
+      .should( 'have.length', 147 )
       .first()
       .should( 'contain', 'Akwesasne Housing Authority/ Saint Regis Mohawk Tribe' );
   } ); 
@@ -159,9 +159,9 @@ describe( 'Rental assistance program filtering', () => {
   it( 'shows all results after clearing filter', () => {
     cy.react( 'Filters' ).should( 'exist' );
     cy.react('ResultItem')
-      .should( 'have.length', 483 );
+      .should( 'have.length', 496 );
     cy.react('Notification')
-      .should( 'contain', '483' )
+      .should( 'contain', '496' )
       .should( 'not.have.class', 'm-notification__success');
     cy.get( '#state-select' ).type( 'California{enter}', { force: true } );
     cy.react('ResultItem')
@@ -176,9 +176,9 @@ describe( 'Rental assistance program filtering', () => {
       .should( 'have.class', 'm-notification__success');
     cy.react( 'ClearIndicator' ).click();
     cy.react('ResultItem')
-      .should( 'have.length', 483 );
+      .should( 'have.length', 496 );
     cy.react('Notification')
-      .should( 'contain', '483' )
+      .should( 'contain', '496' )
       .should( 'not.have.class', 'm-notification__success');
   } );
 

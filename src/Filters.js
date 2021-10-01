@@ -11,14 +11,16 @@ function Filters( props ) {
   return (
     <div className="filters o-well block block__sub">
       <h2>{ t( 'filters.legend' ) }</h2>
-      <Filter id="state-select"
+      <Filter className="state-select-container"
+              id="state-select"
               label={ t( 'filters.state.label' ) }
               onChange={ updateState }
               options={ props.stateOptions }
               placeholder={ t( 'filters.state.placeholder' ) }
               value={ props.state }/>
       { props.countyOptions.length > 0 && 
-        <Filter id="county-select"
+        <Filter className="county-select-container"
+                id="county-select"
                 label={ t( 'filters.county.label' ) }
                 onChange={ props.setCounty }
                 options={ props.countyOptions }
@@ -30,7 +32,8 @@ function Filters( props ) {
                       block__border-top 
                       block__padded-top 
                       block__flush-bottom">
-        <Filter id="tribe-select" 
+        <Filter className="tribe-select-container"
+                id="tribe-select" 
                 helperText={ t( 'filters.tribe.helper_text' ) }
                 label={ t( 'filters.tribe.label' ) }
                 onChange={ props.setTribe }

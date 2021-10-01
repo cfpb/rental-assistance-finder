@@ -16,10 +16,18 @@
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
+const got = require('got');
 const injectDevServer = require("@cypress/react/plugins/react-scripts")
 
-module.exports = (on, config) => {
+module.exports = async (on, config) => {
   injectDevServer(on, config)
+
+  const { body } = await got('https://files.consumerfinance.gov/a/assets/raf/raf.json', {
+    responseType: 'json'
+  })
+
+  config.env.programData = body;
+
   return config
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config

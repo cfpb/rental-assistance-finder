@@ -220,17 +220,32 @@ describe('module::utils', () => {
 
     it( 'returns state, county, and city matches for county equivalent', () => {
       const programs = [
-        {type:'State', 'name': 'Louisiana'},
-        {type:'County', 'name': 'East Baton Rouge Parish'},
-        {type:'County', 'name': 'Orleans Parish'},
-        {type:'City', 'name': 'New Orleans', county:['Orleans Parish']},
-        {type:'City', 'name': 'Baton Rouge', county:['East Baton Rouge Parish']},
+        {type:'State', name: 'Louisiana'},
+        {type:'County', name: 'East Baton Rouge Parish'},
+        {type:'County', name: 'Orleans Parish'},
+        {type:'City', name: 'New Orleans', county:['Orleans Parish']},
+        {type:'City', name: 'Baton Rouge', county:['East Baton Rouge Parish']},
       ]
       const results = filterProgramsByCounty( programs, 'Orleans Parish' );
       expect( results.length ).toEqual( 3 );
       expect( results[0].name ).toEqual( 'Louisiana' );
       expect( results[1].name ).toEqual( 'Orleans Parish' );
       expect( results[2].name ).toEqual( 'New Orleans' );
+    } );
+
+    it( 'matches counties based on either name and county prop', () => {
+      const programs = [
+        {type:'State', name: 'Kentucky'},
+        {type:'County', 
+         name: 'Lexington-Fayette Urban County Government',
+         county: ['Fayette County']},
+        {type:'County', name: 'Fayette County'},
+      ]
+      const results = filterProgramsByCounty( programs, 'Fayette' );
+      expect( results.length ).toEqual( 3 );
+      expect( results[0].name ).toEqual( 'Kentucky' );
+      expect( results[1].name ).toEqual( 'Lexington-Fayette Urban County Government' );
+      expect( results[2].name ).toEqual( 'Fayette County' );
     } );
 
   } );
@@ -296,14 +311,14 @@ describe('module::utils', () => {
     it( 'returns counties when county threshold met', () => {
       const countyData = {Indiana: ['County 1', 'County 2']};
       const [ geographicResults, countyOptionResults ] = getGeographicData (  
-        IndianaPrograms, countyData, 'Indiana', '', '', IndianaPrograms.length
+        IndianaPrograms, countyData, 'Indiana', '', '', 1
       )
       expect( countyOptionResults ).toEqual( countyData['Indiana'] );
     } );
     it( 'does not return counties when county threshold not met', () => {
       const countyData = {Indiana: ['County 1', 'County 2']}
       const [ geographicResults, countyOptionResults ] = getGeographicData (  
-        IndianaPrograms, countyData, 'Indiana', '', '', IndianaPrograms.length + 1
+        IndianaPrograms, countyData, 'Indiana', '', '', IndianaPrograms.length
       )
       expect( countyOptionResults ).toEqual( [] );
     } );

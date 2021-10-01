@@ -55,7 +55,7 @@ describe( 'Filtering and results translations', () => {
   it( 'shows all results message on page load and translated result labels', () => {
     cy.react( 'Filters' ).should( 'exist' );
     cy.react('ResultItem')
-      .should( 'have.length', 483 )
+      .should( 'have.length', 496 )
       .first()
       .find( 'dt' )
       .then( items => {
@@ -67,7 +67,7 @@ describe( 'Filtering and results translations', () => {
     cy.react('Notification')
       .should( 
         'contain', 
-        i18n.t( 'results.all.count', { count: 483 } ) 
+        i18n.t( 'results.all.count', { count: 496 } ) 
       );
   } );
 

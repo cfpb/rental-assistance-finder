@@ -43,6 +43,7 @@
     "cypress": "^8.2.0",
     "cypress-react-selector": "^2.3.11",
     "i18next": "^20.4.0",
+    "got": "11.8.2",
     "jest-fetch-mock": "3.0.3",
     "polyfill-array-includes": "^2.0.0",
     "promise-polyfill": "8.2.0",
@@ -73,6 +74,8 @@
   "homepage": "https://github.com/cfpb/rental-assistance-finder",
   "jest": {
     "resetMocks": false,
-    "testMatch": [ "**/__tests__/**/*.[jt]s?(x)"]
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)"
+    ]
   }
 }

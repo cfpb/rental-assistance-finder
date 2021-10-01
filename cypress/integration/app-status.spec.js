@@ -23,9 +23,9 @@ describe( 'Rental assistance programs app status', () => {
     cy.get( '.m-notification' )
       .should( 'have.length', 1 )
       .should( 'not.have.class', 'm-notification__loading' )
-      .should('contain', '483');
+      .should('contain', '496');
     cy.get( '.result-item' )
-      .should( 'have.length', 483 );
+      .should( 'have.length', 496 );
   } );
 
 
@@ -41,7 +41,7 @@ describe( 'Rental assistance programs app status', () => {
     cy.get( '.m-notification' )
       .should( 'have.length', 1 )
       .should( 'not.have.class', 'm-notification__loading' )
-      .should( 'have.class', 'm-notification__warning' )
+      .should( 'have.class', 'm-notification__warning' );
   } );
 
   it( 'shows a warning notification if data format incorrect', () => {
@@ -62,6 +62,6 @@ describe( 'Rental assistance programs app status', () => {
     cy.get( '.m-notification' )
       .should( 'have.length', 1 )
       .should( 'not.have.class', 'm-notification__loading' )
-      .should( 'have.class', 'm-notification__warning' )
+      .should( 'have.class', 'm-notification__warning' );
   } );
 } );

@@ -106,17 +106,18 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
 export const filterProgramsByCounty = ( statePrograms, county ) => {
   return statePrograms.filter( item => ( 
       // state is always returned
-      ( item.type === 'State' ) || 
-      // Check if county name matches program name with the 
-      // word "County" removed (county dropdown values don't
-      // include "County", program names do -- except where 
-      // counties are called something else, like Parish)
+      ( item.type === 'State' ) ||
+      // check for county in county array after removing the word
+      // "County" since that's not present in the dropdown values
+      ( item.county instanceof Array && 
+        item.county.some( val => 
+          val.split(' County')[0] === county 
+        )
+      ) ||
+      // Check if county name matches program name, 
+      // again removing "County" 
       ( item.type === 'County' && 
-        item.name.split(' County')[0] === county ) ||
-      ( item.type === 'City' && 
-        // check for county in county array
-        (item.county || []).some( val => val.split(' County')[0] === county )
-      ) 
+        item.name.split(' County')[0] === county ) 
     )
   )
 }
@@ -135,18 +136,18 @@ export const filterProgramsByCounty = ( statePrograms, county ) => {
  * @param  {string} [county] - County name.
  * @param  {string} [tribe] - Tribal program name.
  * @param  {number} [countyThreshold=10] - Number of results that
- * triggers display of county filter (defaults to 10)
+ * triggers display of county filter (defaults to 1)
  * @returns {array} An array containing two arrays:
  * 1) an array of filtered geographic programs
  * 2) an array of county names
  */
 export const getGeographicData = ( 
-  programs, countyData, state, county, tribe, countyThreshold = 10 
+  programs, countyData, state, county, tribe, countyThreshold = 1 
 ) => {
   let geographic = filterGeographicPrograms( programs, state, tribe );
   let countyOptions = [];
 
-  if ( state && geographic.length >= countyThreshold ) {
+  if ( state && ( geographic.length > countyThreshold ) ) {
     countyOptions = generateCountyOptions( countyData, state );
   }
 

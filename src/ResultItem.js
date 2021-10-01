@@ -4,7 +4,8 @@ const ResultItem = ( props ) => {
     <div className="block
                     block__sub
                     block__border-bottom
-                    block__padded-bottom">
+                    block__padded-bottom
+                    result-item">
       <h3>{ props.item.name }</h3>
       <dl>
         { props.item.type !== 'Tribal Government' &&

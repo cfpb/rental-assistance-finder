@@ -14,9 +14,7 @@
     "legend": "Encuentre programas de asistencia con la renta",
     "county": {
       "label": "Vea resultados por 'county' o condado",
-      "helper_text": "Si su condado no aparece listado abajo, usted podría calificar en otros programas.",
-      "placeholder": "Seleccione su condado",
-      "unlisted": "Mi condado no aparece listado"
+      "placeholder": "Seleccione su condado"
     },
     "state": {
       "label": "En su estado o territorio",
@@ -33,9 +31,19 @@
       "count": "Se muestra un total de 1 programa de asistencia con la renta",
       "count_plural": "Se muestra un total de {{count}} programas de asistencia con la renta"
     },
+    "single": {
+      "message": "1 programa encontrado.",
+      "explanation": "Encontramos un programa para el que puede calificar en función de su selección."
+    },
+    "single_geographic": {
+      "message": "1 programa encontrado.",
+      "explanation": "Encontramos un programa que puede brindar ayuda con el pago del alquiler en su zona."
+    },
     "filtered": {
-      "count": "Mostrando 1 resultado de programas de asistencia con la renta según su búsqueda",
-      "count_plural": "Mostrando {{count}} resultados de programas de asistencia con la renta según su búsqueda"
+      "count": "Mostrando 1 programa que puede servir en su área.",
+      "count_plural": "Mostrando {{count}} programas que pueden servir en su área.",
+      "explanation": "",
+      "explanation_plural": "Para ver si califica, comience primero con el programa más local."
     },
     "none": {
       "message": "Lo sentimos mucho, no encontramos ningún programa de asistencia con la renta en su área.",

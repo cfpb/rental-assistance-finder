@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import stateOptions from './data/states.json';
 import { filterTribalPrograms, getGeographicData } from './utils.js';
 import Filters from './Filters.js';
 import Results from './Results.js';
@@ -12,13 +11,11 @@ function RentalAssistanceFinder( props ) {
   const tribalPrograms = filterTribalPrograms( props.tribal, state, tribe );
 
   const [ geographicPrograms, countyOptions ] = getGeographicData(
-    props.geographic, state, county, tribe, props.countyThreshold
+    props.geographic, props.countyData, state, county, tribe, props.countyThreshold
   );
 
-  const results = [].concat( geographicPrograms, tribalPrograms );
-
   return (
-    <div className="App">
+    <div className="rental-assistance-finder">
       <Filters county={ county }
                state={ state }
                tribe={ tribe }
@@ -26,10 +23,13 @@ function RentalAssistanceFinder( props ) {
                setState={ setState }
                setTribe={ setTribe }
                countyOptions= { countyOptions }
-               stateOptions={ stateOptions }
+               stateOptions={ props.stateOptions }
                tribeOptions={ props.tribeOptions }/>
-      <Results results={ results }
-               filtered={ state || tribe }/>
+      <Results county={ county }
+               geographic={ geographicPrograms }
+               tribal={ tribalPrograms }
+               state={ state }
+               tribe={ tribe }/>
     </div>
   );
 }

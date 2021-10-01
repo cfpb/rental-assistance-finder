@@ -2,8 +2,10 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
 import { fetchPrograms, generateTribalOptions } from './utils.js';
-import RentalAssistanceFinder from './RentalAssistanceFinder.js';
+import stateOptions from './data/states.json';
+import countyData from './data/counties.json';
 import Notification from "./Notification.js";
+import RentalAssistanceFinder from './RentalAssistanceFinder.js';
 
 function App( props ) {
   const [ data, setData ] = useState( {
@@ -14,7 +16,7 @@ function App( props ) {
   const { t } = useTranslation();
 
   useEffect( () => {
-    // empty array as second argument causes this to run once
+    // passing empty array as second argument causes this to run once
     const fetchData = () => {
       fetchPrograms()
         .then( programData => {
@@ -37,8 +39,10 @@ function App( props ) {
           <div>
             { data.geographic.length ? 
               (
-                <RentalAssistanceFinder countyThreshold={ props.countyThreshold }
+                <RentalAssistanceFinder countyData={ countyData }
+                                        countyThreshold={ props.countyThreshold }
                                         geographic={ data.geographic }
+                                        stateOptions={ stateOptions }
                                         tribal={ data.tribal }
                                         tribeOptions={ generateTribalOptions( data.tribal ) }/>
               ) : (

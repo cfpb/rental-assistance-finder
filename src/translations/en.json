@@ -14,9 +14,7 @@
     "legend": "Find rental assistance programs",
     "county": {
       "label": "Narrow results by county (optional)",
-      "helper_text": "If your county is not listed below, you may still qualify for other programs.",
-      "placeholder": "Select your county",
-      "unlisted": "My county is not listed"    
+      "placeholder": "Select your county"
     },
     "state": {
       "label": "For your state or territory",
@@ -30,12 +28,22 @@
   },
   "results": {
     "all": {
-      "count": "Showing 1 total rental assistance program",
-      "count_plural": "Showing {{count}} total rental assistance programs"
+      "count": "Showing 1 total rental assistance program.",
+      "count_plural": "Showing {{count}} total rental assistance programs."
+    },
+    "single": {
+      "message": "1 program found.",
+      "explanation": "We found a program that you may qualify for based on your selection."
+    },
+    "single_geographic": {
+      "message": "1 program found.",
+      "explanation": "We found a program that may provide rental assistance to your area."
     },
     "filtered": {
-      "count": "Showing 1 rental assistance program that matches your search",
-      "count_plural": "Showing {{count}} rental assistance programs that match your search"
+      "count": "Showing 1 program that may serve your area.",
+      "count_plural": "Showing {{count}} programs that may serve your area.",
+      "explanation": "",
+      "explanation_plural": "To see if you qualify, start with the most local program first."
     },
     "none": {
       "message": "Sorry, we did not find a rental assistance program for your area.",

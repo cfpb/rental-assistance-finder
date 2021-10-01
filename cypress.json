@@ -3,5 +3,10 @@
     "cypress-react-selector": {
       "root": ".App"
     }
-  }
+  },
+  "component": {
+    "testFiles": "**/*.spec.{js,ts,jsx,tsx}",
+    "componentFolder": "src"
+  },
+  "numTestsKeptInMemory": 300
 }

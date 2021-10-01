@@ -9,7 +9,8 @@
     "prepack": "cp build/static/js/main.js dist/ && cp build/static/css/main.*.css dist/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "components": "cypress open-ct"
   },
   "eslintConfig": {
     "extends": [
@@ -17,7 +18,9 @@
       "react-app/jest"
     ]
   },
-  "files": [ "dist/*"],
+  "files": [
+    "dist/*"
+  ],
   "browserslist": {
     "production": [
       "last 2 versions",
@@ -32,11 +35,16 @@
     ]
   },
   "devDependencies": {
-    "rewire": "5.0.0",
+    "@cypress/react": "5.10.0",
+    "@cypress/webpack-dev-server": "1.6.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "cypress": "^8.2.0",
+    "cypress-react-selector": "^2.3.11",
     "i18next": "^20.4.0",
+    "got": "11.8.2",
+    "jest-fetch-mock": "3.0.3",
     "polyfill-array-includes": "^2.0.0",
     "promise-polyfill": "8.2.0",
     "react": "^17.0.2",
@@ -45,6 +53,7 @@
     "react-i18next": "^11.11.4",
     "react-scripts": "4.0.3",
     "react-select": "4.3.1",
+    "rewire": "5.0.0",
     "symbol-es6": "^0.1.2",
     "web-vitals": "^1.0.1",
     "whatwg-fetch": "^3.6.2"
@@ -62,5 +71,11 @@
   "bugs": {
     "url": "https://github.com/cfpb/rental-assistance-finder/issues"
   },
-  "homepage": "https://github.com/cfpb/rental-assistance-finder"
+  "homepage": "https://github.com/cfpb/rental-assistance-finder",
+  "jest": {
+    "resetMocks": false,
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)"
+    ]
+  }
 }

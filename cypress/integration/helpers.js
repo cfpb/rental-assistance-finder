@@ -29,7 +29,7 @@ export const processData = ( programData ) => {
       const counties = {};
       statePrograms.forEach( program => {
         const stateEntry = countyData[state] || {};
-        if ( program.county instanceof Array ) {
+        if ( Array.isArray( program.county ) ) {
           const countyArray = program.county || [];
           countyArray.forEach( item => {
             const countyName = item.split(' County')[0];

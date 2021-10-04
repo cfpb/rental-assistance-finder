@@ -109,7 +109,7 @@ export const filterProgramsByCounty = ( statePrograms, county ) => {
       ( item.type === 'State' ) ||
       // check for county in county array after removing the word
       // "County" since that's not present in the dropdown values
-      ( item.county instanceof Array && 
+      ( Array.isArray( item.county ) && 
         item.county.some( val => 
           val.split(' County')[0] === county 
         )

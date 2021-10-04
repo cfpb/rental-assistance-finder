@@ -9,6 +9,7 @@ export const selectOption = ( select, val ) => {
 }
 
 export const processData = ( programData ) => {
+  console.log(programData)
   const countyThreshold = 1;
   const stateData = {};
   const countyData = {};
@@ -29,7 +30,7 @@ export const processData = ( programData ) => {
       const counties = {};
       statePrograms.forEach( program => {
         const stateEntry = countyData[state] || {};
-        if ( program.county instanceof Array ) {
+        if ( Array.isArray( program.county ) ) {
           const countyArray = program.county || [];
           countyArray.forEach( item => {
             const countyName = item.split(' County')[0];
@@ -47,5 +48,7 @@ export const processData = ( programData ) => {
       })
     }
   } );
+  console.log(stateData)
+  console.log(countyData)
   return [ stateData, countyData ];
 }

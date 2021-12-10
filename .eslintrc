@@ -12,6 +12,10 @@ parserOptions:
 
 parser: espree
 
+extends:
+  - "plugin:cypress/recommended"
+  - "react-app/jest"
+
 env:
   browser: true
   node: true

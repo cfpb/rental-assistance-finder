@@ -23,37 +23,37 @@ const customStyles = {
   } )
 };
 
-const Filter = ( props ) => {
-  const changeHandler = ( val ) => {
+const Filter = props => {
+  const changeHandler = val => {
     props.onChange( val );
     Analytics.sendEvent( Analytics.getDataLayerOptions( props.id, val ) );
-  }
+  };
 
   return (
-    <div className="m-form-field">
-      <label className="a-label a-label__heading"
-             htmlFor={ props.id }>
+    <div className='m-form-field'>
+      <label className='a-label a-label__heading'
+        htmlFor={ props.id }>
         { props.label }
         { props.helperText &&
-          <small className="a-label_helper a-label_helper__block">
+          <small className='a-label_helper a-label_helper__block'>
             { props.helperText }
           </small>
         }
       </label>
       <Select aria-label={ props.label }
-              className={ props.className }
-              classNamePrefix="react-select"
-              getOptionLabel={ label => label }
-              getOptionValue={ value => value }
-              inputId={ props.id }
-              isClearable={ true }
-              onChange={ changeHandler }
-              options={ props.options }
-              placeholder={ props.placeholder }
-              styles={customStyles}
-              value={ [ props.value ] }/>
-      </div>
-    );
+        className={ props.className }
+        classNamePrefix='react-select'
+        getOptionLabel={ label => label }
+        getOptionValue={ value => value }
+        inputId={ props.id }
+        isClearable={ true }
+        onChange={ changeHandler }
+        options={ props.options }
+        placeholder={ props.placeholder }
+        styles={customStyles}
+        value={ [ props.value ] }/>
+    </div>
+  );
 };
 
 export default Filter;

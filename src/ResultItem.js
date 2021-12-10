@@ -1,11 +1,11 @@
-const ResultItem = ( props ) => {
+const ResultItem = props => {
   const fields = props.fields;
   return (
-    <div className="block
+    <div className='block
                     block__sub
                     block__border-bottom
                     block__padded-bottom
-                    result-item">
+                    result-item'>
       <h3>{ props.item.name }</h3>
       <dl>
         { props.item.type !== 'Tribal Government' &&
@@ -44,8 +44,8 @@ const ResultItem = ( props ) => {
           </div>
         }
       </dl>
-    </div>    
-  )
+    </div>
+  );
 };
 
 export default ResultItem;

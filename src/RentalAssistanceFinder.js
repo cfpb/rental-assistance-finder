@@ -15,21 +15,21 @@ function RentalAssistanceFinder( props ) {
   );
 
   return (
-    <div className="rental-assistance-finder">
+    <div className='rental-assistance-finder'>
       <Filters county={ county }
-               state={ state }
-               tribe={ tribe }
-               setCounty={ setCounty }
-               setState={ setState }
-               setTribe={ setTribe }
-               countyOptions= { countyOptions }
-               stateOptions={ props.stateOptions }
-               tribeOptions={ props.tribeOptions }/>
+        state={ state }
+        tribe={ tribe }
+        setCounty={ setCounty }
+        setState={ setState }
+        setTribe={ setTribe }
+        countyOptions= { countyOptions }
+        stateOptions={ props.stateOptions }
+        tribeOptions={ props.tribeOptions }/>
       <Results county={ county }
-               geographic={ geographicPrograms }
-               tribal={ tribalPrograms }
-               state={ state }
-               tribe={ tribe }/>
+        geographic={ geographicPrograms }
+        tribal={ tribalPrograms }
+        state={ state }
+        tribe={ tribe }/>
     </div>
   );
 }

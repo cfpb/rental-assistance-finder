@@ -7,12 +7,12 @@ i18next
   .use( initReactI18next )
   .init( {
     resources: {
-       en: { translation: en },
-       es: { translation: es }
+      en: { translation: en },
+      es: { translation: es }
     },
     lng: 'en',
     interpolation: {
-      escapeValue: false,
+      escapeValue: false
     },
     returnObjects: true
   } );

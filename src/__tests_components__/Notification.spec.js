@@ -6,11 +6,11 @@ describe( 'Notification component', () => {
   it( 'renders a message, explanation, and links', () => {
     const msg = 'Test message';
     const explanation = 'More information';
-    const link_a = {text: "Link a", url:'http://www.cf.gov'}
-    const link_b = {text: "Link b", url:'http://cf.gov'}
-    mount(<Notification message={msg} 
-                        explanation={explanation}
-                        links={[link_a, link_b]}/>);
+    const link_a = {text: 'Link a', url:'http://www.cf.gov'};
+    const link_b = {text: 'Link b', url:'http://cf.gov'};
+    mount(<Notification message={msg}
+      explanation={explanation}
+      links={[link_a, link_b]}/>);
     cy.get( '.m-notification_message' ).contains( msg );
     cy.get( '.m-notification_explanation' ).contains( explanation );
     cy.get( '.m-list_link' )
@@ -50,7 +50,7 @@ describe( 'Notification component', () => {
 
   it( 'applies class based on type prop', () => {
     const msg = 'Test message';
-    mount(<Notification message={msg} type="random"/>);
+    mount(<Notification message={msg} type='random'/>);
     cy.get( '.m-notification_message' ).contains( msg );
     cy.get( '.m-notification' ).should( 'have.class', 'm-notification__random' );
   } );
@@ -65,7 +65,7 @@ describe( 'Notification component', () => {
 
   it( 'adds an svg and role for warnings', () => {
     const msg = 'Test message';
-    mount(<Notification message={msg} type="warning"/>);
+    mount(<Notification message={msg} type='warning'/>);
     cy.get( '.m-notification_message' ).contains( msg );
     cy.get( 'svg' ).should( 'exist' );
     cy.get( '.m-notification_content' ).should( 'have.attr', 'role', 'alert' );
@@ -73,7 +73,7 @@ describe( 'Notification component', () => {
 
   it( 'adds a class and role for errors', () => {
     const msg = 'Test message';
-    mount(<Notification message={msg} type="error"/>);
+    mount(<Notification message={msg} type='error'/>);
     cy.get( '.m-notification_message' ).contains( msg );
     cy.get( '.m-notification' ).should( 'have.class', 'm-notification__error' );
     cy.get( '.m-notification_content' ).should( 'have.attr', 'role', 'alert' );
@@ -81,7 +81,7 @@ describe( 'Notification component', () => {
 
   it( 'adds an svg and class for loading', () => {
     const msg = 'Test message';
-    mount(<Notification message={msg} type="loading"/>);
+    mount(<Notification message={msg} type='loading'/>);
     cy.get( '.m-notification_message' ).contains( msg );
     cy.get( '.m-notification' ).should( 'have.class', 'm-notification__loading' );
     cy.get( 'svg' ).should( 'exist' );
@@ -90,7 +90,7 @@ describe( 'Notification component', () => {
 
   it( 'adds an svg and class for success', () => {
     const msg = 'Test message';
-    mount(<Notification message={msg} type="success"/>);
+    mount(<Notification message={msg} type='success'/>);
     cy.get( '.m-notification_message' ).contains( msg );
     cy.get( '.m-notification' ).should( 'have.class', 'm-notification__success' );
     cy.get( 'svg' ).should( 'exist' );

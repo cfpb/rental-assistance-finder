@@ -6,7 +6,7 @@
     "build": "node ./build-non-split.js",
     "prepack": "cp build/static/js/main.js dist/ && cp build/static/css/main.*.css dist/",
     "test": "yarn run lint && yarn run test:unit && yarn run cypress run-ct && yarn run cypress run",
-    "test:unit": "react-scripts test",
+    "test:unit": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "./node_modules/eslint/bin/eslint.js --ext .js src/"
   },

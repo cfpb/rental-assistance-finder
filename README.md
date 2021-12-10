@@ -12,13 +12,17 @@ By distributing both the React source code and the final built Javascript and CS
 
 1. Clone repo
 2. Run `yarn`
-3. Run `yarn start` 
+3. Run `yarn start`
 
    This runs the app in the development mode.
-   
+
    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
    The page will reload if you make edits.
 
+## Testing
+
+- Lint the application with `yarn run lint`.
+- Run functional tests with `yarn run cypress run`.
 
 ## To use inside a website
 
@@ -26,10 +30,3 @@ By distributing both the React source code and the final built Javascript and CS
 2. Include the `main.js` and `main.css` files from the `dist/` folder in your HTML page.
 3. Add a container element to the page with id `rental-assistance-finder`
 4. From here, you may need to further adjust CSS rules to customize the style of the resulting elements.
-
-
-
-
-
-
-

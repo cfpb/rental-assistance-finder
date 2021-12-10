@@ -2,14 +2,13 @@
   "name": "@cfpb/rental-assistance-finder",
   "version": "0.4.0",
   "scripts": {
-    "start": "ESLINT_NO_DEV_ERRORS=true react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN=true node ./build-non-split.js",
+    "start": "react-scripts start",
+    "build": "node ./build-non-split.js",
     "prepack": "cp build/static/js/main.js dist/ && cp build/static/css/main.*.css dist/",
-    "test": "react-scripts test",
+    "test": "yarn run lint && yarn run test:unit && yarn run cypress run-ct && yarn run cypress run",
+    "test:unit": "react-scripts test",
     "eject": "react-scripts eject",
-    "e2e": "cypress open",
-    "components": "cypress open-ct",
-    "lint": "./node_modules/eslint/bin/eslint.js --ext .js --quiet src/"
+    "lint": "./node_modules/eslint/bin/eslint.js --ext .js src/"
   },
   "files": [
     "dist/*"
@@ -28,14 +27,15 @@
     ]
   },
   "devDependencies": {
-    "@cypress/react": "5.10.0",
-    "@cypress/webpack-dev-server": "1.6.0",
-    "@testing-library/jest-dom": "^5.11.4",
+    "@cypress/react": "^5.10.3",
+    "@cypress/webpack-dev-server": "^1.7.0",
+    "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "cypress": "^8.2.0",
+    "cypress": "^9.1.1",
     "cypress-react-selector": "^2.3.11",
     "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-react": "^7.27.1",
     "got": "11.8.2",
     "i18next": "^20.4.0",
     "jest-fetch-mock": "3.0.3",

@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 const ResultItem = props => {
   const fields = props.fields;
   return (
@@ -46,6 +49,12 @@ const ResultItem = props => {
       </dl>
     </div>
   );
+};
+
+// Validate (type check) prop types.
+ResultItem.propTypes = {
+  fields: PropTypes.object,
+  item: PropTypes.object
 };
 
 export default ResultItem;

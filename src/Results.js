@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import ResultsNotification from './ResultsNotification.js';
 import ResultItem from './ResultItem.js';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Results = props => {
   const { t } = useTranslation();
@@ -11,11 +13,18 @@ const Results = props => {
       <ResultsNotification filtered={ props.state || props.tribe }
         geographicCount={ props.geographic.length }
         resultsCount={ results.length } />
-      { results.length > 0 && results.map( ( item, index ) => (
-        <ResultItem item={ item } key={ index } fields={ fields }/>
-      ) ) }
+      { results.length > 0 && results.map( ( item, index ) => <ResultItem item={ item } key={ index } fields={ fields }/>
+      ) }
     </div>
   );
+};
+
+// Validate (type check) prop types.
+Results.propTypes = {
+  geographic: PropTypes.object,
+  tribal: PropTypes.string,
+  state: PropTypes.string,
+  tribe: PropTypes.string
 };
 
 export default Results;

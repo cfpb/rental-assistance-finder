@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { filterTribalPrograms, getGeographicData } from './utils.js';
 import Filters from './Filters.js';
 import Results from './Results.js';
+import PropTypes from 'prop-types';
 
 function RentalAssistanceFinder( props ) {
   const [ state, setState ] = useState( '' );
@@ -33,5 +34,15 @@ function RentalAssistanceFinder( props ) {
     </div>
   );
 }
+
+// Validate (type check) prop types.
+RentalAssistanceFinder.propTypes = {
+  tribal: PropTypes.object,
+  geographic: PropTypes.object,
+  countyData: PropTypes.object,
+  countyThreshold: PropTypes.number,
+  stateOptions: PropTypes.object,
+  tribeOptions: PropTypes.object
+};
 
 export default RentalAssistanceFinder;

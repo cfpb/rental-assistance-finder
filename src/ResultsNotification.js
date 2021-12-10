@@ -1,5 +1,7 @@
 import Notification from './Notification.js';
 import { useTranslation } from 'react-i18next';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const ResultsNotification = props => {
   const { t } = useTranslation();
@@ -16,11 +18,11 @@ const ResultsNotification = props => {
   } else if ( resultsCount === 1 ) {
     type = 'success';
     if ( props.geographicCount === 1 ) {
-      message = t( 'results.single_geographic.message');
-      explanation = t( 'results.single_geographic.explanation');
+      message = t( 'results.single_geographic.message' );
+      explanation = t( 'results.single_geographic.explanation' );
     } else {
-      message = t( 'results.single.message');
-      explanation = t( 'results.single.explanation');
+      message = t( 'results.single.message' );
+      explanation = t( 'results.single.explanation' );
     }
   } else if ( props.filtered ) {
     type = 'success';
@@ -35,6 +37,13 @@ const ResultsNotification = props => {
       message={ message }
       type={ type } />
   );
+};
+
+// Validate (type check) prop types.
+ResultsNotification.propTypes = {
+  resultsCount: PropTypes.number,
+  geographicCount: PropTypes.number,
+  filtered: PropTypes.object
 };
 
 export default ResultsNotification;

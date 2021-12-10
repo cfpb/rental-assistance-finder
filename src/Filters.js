@@ -1,5 +1,7 @@
 import Filter from './Filter.js';
 import { useTranslation } from 'react-i18next';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function Filters( props ) {
   const { t } = useTranslation();
@@ -44,5 +46,18 @@ function Filters( props ) {
     </div>
   );
 }
+
+// Validate (type check) prop types.
+Filters.propTypes = {
+  state: PropTypes.string,
+  stateOptions: PropTypes.object,
+  setState: PropTypes.func,
+  county: PropTypes.string,
+  countyOptions: PropTypes.object,
+  setCounty: PropTypes.func,
+  tribe: PropTypes.string,
+  tribeOptions: PropTypes.object,
+  setTribe: PropTypes.func
+};
 
 export default Filters;

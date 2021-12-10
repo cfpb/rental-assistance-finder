@@ -21,8 +21,24 @@ By distributing both the React source code and the final built Javascript and CS
 
 ## Testing
 
+All linting and testing can be run with `yarn run test`. Otherwise, the individual checks can be done below:
+
+### Linting
+
 - Lint the application with `yarn run lint`.
+- Autofix linting issues with `yarn run lint --fix`
+
+### Unit tests
+
+- Run unit tests with `yarn run test:unit`.
+
+### Functional tests
+
+Ensure a local server is running (with `yarn start`).
+
 - Run functional tests with `yarn run cypress run`.
+- Run functional tests interactively with `yarn run cypress open`
+- Run component functional tests with `yarn run cypress run-ct`
 
 ## To use inside a website
 

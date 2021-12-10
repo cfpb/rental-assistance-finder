@@ -33,7 +33,7 @@ export const generateCountyOptions = ( countyData, state ) => countyData[state] 
  * @param  {array} data - Array of program objects.
  * @returns {array} An array of program names.
  */
-export const generateTribalOptions = data => data.map( item => ( item.name ) ).sort();
+export const generateTribalOptions = data => data.map( item => item.name ).sort();
 
 /**
  * Filters an array of geographic (state-based) program objects.
@@ -50,8 +50,8 @@ export const generateTribalOptions = data => data.map( item => ( item.name ) ).s
  */
 export const filterGeographicPrograms = ( programs, state, tribe ) => {
   if ( state ) {
-    let filtered = programs.filter(
-      item => ( item.state === state )
+    const filtered = programs.filter(
+      item => item.state === state
     );
     return sortStatePrograms( filtered );
   } else if ( tribe ) {
@@ -77,7 +77,7 @@ export const filterGeographicPrograms = ( programs, state, tribe ) => {
 export const filterTribalPrograms = ( programs, state, tribe ) => {
   if ( tribe ) {
     return programs.filter(
-      item => ( item.name === tribe )
+      item => item.name === tribe
     );
   } else if ( state ) {
     return [];
@@ -95,21 +95,24 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
  * @param  {string} county - County name.
  * @returns {array} Array of programs in county.
  */
-export const filterProgramsByCounty = ( statePrograms, county ) => statePrograms.filter( item => (
+export const filterProgramsByCounty = ( statePrograms, county ) => statePrograms.filter( item => {
   // state is always returned
-  ( item.type === 'State' ) ||
-      // check for county in county array after removing the word
-      // "County" since that's not present in the dropdown values
-      ( Array.isArray( item.county ) &&
-        item.county.some( val => val.split(' County')[0] === county
-        )
-      ) ||
-      // Check if county name matches program name,
-      // again removing "County"
-      ( item.type === 'County' &&
-        item.name.split(' County')[0] === county )
-)
-);
+  const returnVal = ( item.type === 'State' ) ||
+
+    /* check for county in county array after removing the word
+      "County" since that's not present in the dropdown values */
+    ( Array.isArray( item.county ) &&
+      item.county.some( val => val.split( ' County' )[0] === county
+      )
+    ) ||
+
+    /* Check if county name matches program name,
+      again removing "County" */
+    ( item.type === 'County' &&
+      item.name.split( ' County' )[0] === county );
+
+  return returnVal;
+} );
 
 /**
  * Processes geographic programs.

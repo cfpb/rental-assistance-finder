@@ -1,5 +1,7 @@
 import Select from 'react-select';
 import Analytics from './Analytics.js';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const customStyles = {
   control: base => ( {
@@ -54,6 +56,18 @@ const Filter = props => {
         value={ [ props.value ] }/>
     </div>
   );
+};
+
+// Validate (type check) prop types.
+Filter.propTypes = {
+  onChange: PropTypes.func,
+  id: PropTypes.number,
+  label: PropTypes.string,
+  helperText: PropTypes.string,
+  className: PropTypes.string,
+  options: PropTypes.object,
+  placeholder: PropTypes.string,
+  value: PropTypes.string
 };
 
 export default Filter;

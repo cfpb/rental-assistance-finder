@@ -1,11 +1,14 @@
-const ResultItem = ( props ) => {
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const ResultItem = props => {
   const fields = props.fields;
   return (
-    <div className="block
+    <div className='block
                     block__sub
                     block__border-bottom
                     block__padded-bottom
-                    result-item">
+                    result-item'>
       <h3>{ props.item.name }</h3>
       <dl>
         { props.item.type !== 'Tribal Government' &&
@@ -44,8 +47,14 @@ const ResultItem = ( props ) => {
           </div>
         }
       </dl>
-    </div>    
-  )
+    </div>
+  );
+};
+
+// Validate (type check) prop types.
+ResultItem.propTypes = {
+  fields: PropTypes.object,
+  item: PropTypes.object
 };
 
 export default ResultItem;

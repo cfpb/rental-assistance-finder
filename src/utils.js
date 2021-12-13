@@ -7,22 +7,18 @@
  * @returns {number} A number indicating whether 'a' comes before,
  * after, or is the same as 'b' in sort order.
  */
-export const sortGeographic = ( a, b ) => {
-  return a.type.localeCompare( b.type ) || 
+export const sortGeographic = ( a, b ) => a.type.localeCompare( b.type ) ||
          a.name.localeCompare( b.name );
-}
 
 /**
  * Sorts a state's programs.
- * Programs are sorted so that alphabetized city-level programs 
- * appear first, then alphabetized county-level programs, 
+ * Programs are sorted so that alphabetized city-level programs
+ * appear first, then alphabetized county-level programs,
  * then the state-level program.
  * @param  {array} programs - An array of program objects to be sorted.
  * @returns {array} An array of sorted program objects.
  */
-export const sortStatePrograms = ( programs ) => {
-  return programs.sort( sortGeographic );
-}
+export const sortStatePrograms = programs => programs.sort( sortGeographic );
 
 /**
  * Returns an array of county names for a given state.
@@ -30,18 +26,14 @@ export const sortStatePrograms = ( programs ) => {
  * @param  {string} state - State name.
  * @returns {array} Array of county names.
  */
-export const generateCountyOptions = ( countyData, state ) => {
-  return countyData[state] || [];
-}
+export const generateCountyOptions = ( countyData, state ) => countyData[state] || [];
 
 /**
  * Generates an array of program names from an array of program objects.
  * @param  {array} data - Array of program objects.
  * @returns {array} An array of program names.
  */
-export const generateTribalOptions = data => {
-  return data.map( item => ( item.name ) ).sort();
-}
+export const generateTribalOptions = data => data.map( item => item.name ).sort();
 
 /**
  * Filters an array of geographic (state-based) program objects.
@@ -58,16 +50,16 @@ export const generateTribalOptions = data => {
  */
 export const filterGeographicPrograms = ( programs, state, tribe ) => {
   if ( state ) {
-    let filtered = programs.filter(
-      item => ( item.state === state )
+    const filtered = programs.filter(
+      item => item.state === state
     );
     return sortStatePrograms( filtered );
   } else if ( tribe ) {
     return [];
-  } else {
-    return programs;
   }
-}
+  return programs;
+
+};
 
 /**
  * Filters an array of tribal program objects.
@@ -84,15 +76,15 @@ export const filterGeographicPrograms = ( programs, state, tribe ) => {
  */
 export const filterTribalPrograms = ( programs, state, tribe ) => {
   if ( tribe ) {
-    return programs.filter( 
-      item => ( item.name === tribe )
-    )
+    return programs.filter(
+      item => item.name === tribe
+    );
   } else if ( state ) {
     return [];
-  } else {
-    return programs;
   }
-}
+  return programs;
+
+};
 
 /**
  * Filters a state's programs by county.
@@ -103,24 +95,24 @@ export const filterTribalPrograms = ( programs, state, tribe ) => {
  * @param  {string} county - County name.
  * @returns {array} Array of programs in county.
  */
-export const filterProgramsByCounty = ( statePrograms, county ) => {
-  return statePrograms.filter( item => ( 
-      // state is always returned
-      ( item.type === 'State' ) ||
-      // check for county in county array after removing the word
-      // "County" since that's not present in the dropdown values
-      ( Array.isArray( item.county ) && 
-        item.county.some( val => 
-          val.split(' County')[0] === county 
-        )
-      ) ||
-      // Check if county name matches program name, 
-      // again removing "County" 
-      ( item.type === 'County' && 
-        item.name.split(' County')[0] === county ) 
-    )
-  )
-}
+export const filterProgramsByCounty = ( statePrograms, county ) => statePrograms.filter( item => {
+  // state is always returned
+  const returnVal = ( item.type === 'State' ) ||
+
+    /* check for county in county array after removing the word
+      "County" since that's not present in the dropdown values */
+    ( Array.isArray( item.county ) &&
+      item.county.some( val => val.split( ' County' )[0] === county
+      )
+    ) ||
+
+    /* Check if county name matches program name,
+      again removing "County" */
+    ( item.type === 'County' &&
+      item.name.split( ' County' )[0] === county );
+
+  return returnVal;
+} );
 
 /**
  * Processes geographic programs.
@@ -141,8 +133,8 @@ export const filterProgramsByCounty = ( statePrograms, county ) => {
  * 1) an array of filtered geographic programs
  * 2) an array of county names
  */
-export const getGeographicData = ( 
-  programs, countyData, state, county, tribe, countyThreshold = 1 
+export const getGeographicData = (
+  programs, countyData, state, county, tribe, countyThreshold = 1
 ) => {
   let geographic = filterGeographicPrograms( programs, state, tribe );
   let countyOptions = [];
@@ -156,7 +148,7 @@ export const getGeographicData = (
   }
 
   return [ geographic, countyOptions ];
-}
+};
 
 /**
  * Fetches program data from specified endpoint.
@@ -164,29 +156,27 @@ export const getGeographicData = (
  * in correct format.
  * @returns {promise} Promise object
  */
-export const fetchPrograms = () => {
-  return fetch( 
-    'https://files.consumerfinance.gov/a/assets/raf/raf.json' 
-  ).then( 
-    response => {
-      if ( response.ok ) {
-        return response.json();
-      } else {
-        throw new Error( 'Data load failure.' )
-      }
-  } ).then( data => {
-    if ( data.geographic && data.tribal ) {
-      return data;
-    } else {
-      throw new Error( 'Incorrect data format.' )
+export const fetchPrograms = () => fetch(
+  'https://files.consumerfinance.gov/a/assets/raf/raf.json'
+).then(
+  response => {
+    if ( response.ok ) {
+      return response.json();
     }
-  } );
-}
+    throw new Error( 'Data load failure.' );
+
+  } ).then( data => {
+  if ( data.geographic && data.tribal ) {
+    return data;
+  }
+  throw new Error( 'Incorrect data format.' );
+
+} );
 
 /**
  * Sets app's language based on container data attribute.
  * @param {HTMLNode} elem - Container element for app.
- * @param  {object} 18n - Instance of i18next.
+ * @param  {object} i18n - Instance of i18next.
  */
 export const setAppLanguage = ( elem, i18n ) => {
   if ( elem instanceof Element ) {
@@ -195,18 +185,21 @@ export const setAppLanguage = ( elem, i18n ) => {
       i18n.changeLanguage( language );
     }
   }
-}
+};
 
 /**
  * Gets a county threshold based on container data attribute.
  * @param {HTMLNode} elem - Container element for app.
- * @returns {number | undefined} An integer version of the 
+ * @returns {number | undefined} An integer version of the
  * county threshold parameter or undefined
  */
-export const getCountyThreshold = ( elem ) => {
+export const getCountyThreshold = elem => {
+  let returnVal;
+  let UNDEFINED;
   if ( elem instanceof Element ) {
     const threshold = elem.getAttribute( 'data-county-threshold' );
-    const val = parseInt( threshold );
-    return isNaN( val ) ? undefined : val;
+    const val = parseInt( threshold, 10 );
+    returnVal = isNaN( val ) ? UNDEFINED : val;
   }
-}
+  return returnVal;
+};

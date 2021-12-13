@@ -12,13 +12,33 @@ By distributing both the React source code and the final built Javascript and CS
 
 1. Clone repo
 2. Run `yarn`
-3. Run `yarn start` 
+3. Run `yarn start`
 
    This runs the app in the development mode.
-   
+
    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
    The page will reload if you make edits.
 
+## Testing
+
+All linting and testing can be run with `yarn run test`. Otherwise, the individual checks can be done below:
+
+### Linting
+
+- Lint the application with `yarn run lint`.
+- Autofix linting issues with `yarn run lint --fix`
+
+### Unit tests
+
+- Run unit tests with `yarn run test:unit`.
+
+### Functional tests
+
+Ensure a local server is running (with `yarn start`).
+
+- Run functional tests with `yarn run cypress run`.
+- Run functional tests interactively with `yarn run cypress open`
+- Run component functional tests with `yarn run cypress run-ct`
 
 ## To use inside a website
 
@@ -26,10 +46,3 @@ By distributing both the React source code and the final built Javascript and CS
 2. Include the `main.js` and `main.css` files from the `dist/` folder in your HTML page.
 3. Add a container element to the page with id `rental-assistance-finder`
 4. From here, you may need to further adjust CSS rules to customize the style of the resulting elements.
-
-
-
-
-
-
-

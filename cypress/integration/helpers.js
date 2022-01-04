@@ -12,7 +12,7 @@ export const processData = ( programData ) => {
   const countyThreshold = 1;
   const stateData = {};
   const countyData = {};
-  const statewidePrograms = {}
+  const statewidePrograms = {};
   const programs = programData.geographic;
   // generate a map of states and their programs
   programs.forEach( program => {
@@ -20,7 +20,7 @@ export const processData = ( programData ) => {
     const stateArray = stateData[state] || [];
     stateArray.push( program );
     stateData[state] = stateArray;
-    if(program.type === 'State') statewidePrograms[state] = 1
+    if ( program.type === 'State' ) statewidePrograms[state] = 1;
   } );
   const states = Object.keys( stateData );
   // generate a map of states, their counties, and 

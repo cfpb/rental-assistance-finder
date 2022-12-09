@@ -42,7 +42,7 @@
     "filtered": {
       "count": "Showing 1 program that may serve your area.",
       "count_plural": "Showing {{count}} programs that may serve your area.",
-      "explanation": "",
+      "explanation": "Check the program website or call to confirm you can apply.",
       "explanation_plural": "To see if you qualify, start with the most local program first. Check the program website or call to confirm you can apply."
     },
     "none": {

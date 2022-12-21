@@ -94,7 +94,7 @@ describe( 'Filtering and results translations', () => {
         'contain', 
         i18n.t( 'results.filtered.count', { count: 34 } ) 
       )
-      .should( 'contain', es.results.filtered.explanation )
+      .should( 'contain', es.results.filtered.explanation_plural )
       .should( 'have.class', 'm-notification__success');
   } );
 

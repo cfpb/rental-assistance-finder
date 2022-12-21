@@ -42,8 +42,8 @@
     "filtered": {
       "count": "Mostrando 1 programa que puede servir en su área.",
       "count_plural": "Mostrando {{count}} programas que pueden servir en su área.",
-      "explanation": "",
-      "explanation_plural": "Para ver si califica, comience primero con el programa más local."
+      "explanation": "Revise la página web del mismo para saber si puede hacer su solicitud.",
+      "explanation_plural": "Para saber si califica, comience con el programa más cercano."
     },
     "none": {
       "message": "Lo sentimos mucho, no encontramos ningún programa de asistencia con la renta en su área.",

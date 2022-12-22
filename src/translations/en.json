@@ -33,7 +33,7 @@
     },
     "single": {
       "message": "1 program found.",
-      "explanation": "We found a program that may provide rental assistance to your area. Check the program website or call to confirm you can apply."
+      "explanation": "We found a program that you may qualify for based on your selection. Check the program website or call to confirm you can apply."
     },
     "single_geographic": {
       "message": "1 program found.",

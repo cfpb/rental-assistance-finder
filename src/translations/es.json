@@ -33,11 +33,11 @@
     },
     "single": {
       "message": "1 programa encontrado.",
-      "explanation": "Encontramos un programa para el que puede calificar en función de su selección."
+      "explanation": "Encontramos un programa para el que puede calificar en función de su selección. Revise la página web del mismo para saber si puede hacer su solicitud."
     },
     "single_geographic": {
       "message": "1 programa encontrado.",
-      "explanation": "Encontramos un programa que puede brindar ayuda con el pago del alquiler en su zona."
+      "explanation": "Encontramos un programa que puede brindar ayuda con el pago del alquiler en su zona. Revise la página web del mismo para saber si puede hacer su solicitud."
     },
     "filtered": {
       "count": "Mostrando 1 programa que puede servir en su área.",

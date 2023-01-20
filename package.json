@@ -1,6 +1,6 @@
 {
   "name": "@cfpb/rental-assistance-finder",
-  "version": "0.5.3",
+  "version": "0.6.0-beta.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "node ./build-non-split.js",

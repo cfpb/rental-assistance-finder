@@ -8,6 +8,7 @@
     "state": "State/Territory",
     "name": "Program name",
     "type": "Program type",
+    "status": "Program status",
     "contact": "Get started"
   },
   "filters": {

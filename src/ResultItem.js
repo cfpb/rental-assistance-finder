@@ -31,6 +31,12 @@ const ResultItem = props => {
             { props.item.type }
           </dd>
         </div>
+        <div>
+          <dt>{ fields.status }:</dt>
+          <dd>
+            { props.item.status }
+          </dd>
+        </div>
         { ( props.item.url || props.item.phone ) &&
           <div>
             <dt>{ fields.contact }:&nbsp;</dt>

@@ -24,7 +24,8 @@ Results.propTypes = {
   geographic: PropTypes.object,
   tribal: PropTypes.string,
   state: PropTypes.string,
-  tribe: PropTypes.string
+  tribe: PropTypes.string,
+  status: PropTypes.string
 };
 
 export default Results;

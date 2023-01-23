@@ -8,6 +8,7 @@ const Results = props => {
   const { t } = useTranslation();
   const fields = t( 'fields' );
   const results = [].concat( props.geographic, props.tribal );
+
   return (
     <div>
       <ResultsNotification filtered={ props.state || props.tribe }

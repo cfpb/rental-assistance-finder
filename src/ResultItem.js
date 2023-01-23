@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 const ResultItem = props => {
   const fields = props.fields;
+  const container = document.getElementById( 'rental-assistance-finder' );
+  const testing = container.getAttribute( 'beta-testing' ) === 'true';
+
   return (
     <div className='block
                     block__sub
@@ -31,12 +34,14 @@ const ResultItem = props => {
             { props.item.type }
           </dd>
         </div>
+        { testing &&
         <div>
           <dt>{ fields.status }:</dt>
           <dd>
             { props.item.status }
           </dd>
         </div>
+        }
         { ( props.item.url || props.item.phone ) &&
           <div>
             <dt>{ fields.contact }:&nbsp;</dt>

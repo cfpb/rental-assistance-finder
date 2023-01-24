@@ -45,7 +45,7 @@ const ResultItem = props => {
           </dd>
         </div>
         { testing &&
-        <div>
+        <div className='status-row'>
           <dt>{ fields.status }:</dt>
           <dd className={ statusClass }>{ props.item.status }</dd>
         </div>

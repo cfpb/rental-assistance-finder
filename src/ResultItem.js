@@ -6,6 +6,16 @@ const ResultItem = props => {
   const container = document.getElementById( 'rental-assistance-finder' );
   const testing = container.getAttribute( 'beta-testing' ) === 'true';
 
+  let statusClass = '';
+  if ( props.item.status.includes( 'Accepting' ) ) {
+    statusClass = 'status-open';
+  } else if ( props.item.status.includes( 'Waitlist' ) ) {
+    statusClass = 'status-waitlist';
+  } else if ( props.item.status.includes( 'Unknown' ) ) {
+    statusClass = 'status-unknown';
+  }
+
+
   return (
     <div className='block
                     block__sub
@@ -37,9 +47,7 @@ const ResultItem = props => {
         { testing &&
         <div>
           <dt>{ fields.status }:</dt>
-          <dd>
-            { props.item.status }
-          </dd>
+          <dd className={ statusClass }>{ props.item.status }</dd>
         </div>
         }
         { ( props.item.url || props.item.phone ) &&

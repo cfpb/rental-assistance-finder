@@ -11,6 +11,11 @@
     "status": "Program status",
     "contact": "Get started"
   },
+  "statuses": {
+    "accepting": "Accepting applications",
+    "waitlist": "Applications on hold/Waitlist",
+    "rolling": "Accepting applications - rolling basis"
+  },
   "filters": {
     "legend": "Find rental assistance programs",
     "county": {

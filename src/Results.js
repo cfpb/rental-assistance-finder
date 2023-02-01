@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 const Results = props => {
   const { t } = useTranslation();
   const fields = t( 'fields' );
+  const statuses = t( 'statuses' );
   const results = [].concat( props.geographic, props.tribal );
 
   return (
@@ -14,7 +15,7 @@ const Results = props => {
       <ResultsNotification filtered={ props.state || props.tribe }
         geographicCount={ props.geographic.length }
         resultsCount={ results.length } />
-      { results.length > 0 && results.map( ( item, index ) => <ResultItem item={ item } key={ index } fields={ fields }/>
+      { results.length > 0 && results.map( ( item, index ) => <ResultItem item={ item } key={ index } fields={ fields } statuses={ statuses }/>
       ) }
     </div>
   );

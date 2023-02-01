@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getStatusClass } from './utils.js';
 
 const ResultItem = props => {
   const fields = props.fields;
+  const statuses = props.statuses;
   const container = document.getElementById( 'rental-assistance-finder' );
-  const testing = container.getAttribute( 'beta-testing' ) === 'true';
 
-  let statusClass = '';
-  if ( props.item.status.includes( 'Accepting' ) ) {
-    statusClass = 'status-open';
-  } else if ( props.item.status.includes( 'Waitlist' ) ) {
-    statusClass = 'status-waitlist';
-  } else if ( props.item.status.includes( 'Unknown' ) ) {
-    statusClass = 'status-unknown';
-  }
-
+  const statusClass = getStatusClass( props.item.status );
 
   return (
     <div className='block
@@ -44,12 +37,18 @@ const ResultItem = props => {
             { props.item.type }
           </dd>
         </div>
-        { testing &&
         <div className='status-row'>
           <dt>{ fields.status }:</dt>
-          <dd className={ statusClass }>{ props.item.status }</dd>
+          { ( statusClass === 'status-accepting' ) &&
+            <dd className={ statusClass }>{ statuses.accepting }</dd>
+          }
+          { ( statusClass === 'status-waitlist' ) &&
+            <dd className={ statusClass }>{ statuses.waitlist }</dd>
+          }
+          { ( statusClass === 'status-rolling' ) &&
+            <dd className={ statusClass }>{ statuses.rolling }</dd>
+          }
         </div>
-        }
         { ( props.item.url || props.item.phone ) &&
           <div>
             <dt>{ fields.contact }:&nbsp;</dt>
@@ -73,7 +72,8 @@ const ResultItem = props => {
 // Validate (type check) prop types.
 ResultItem.propTypes = {
   fields: PropTypes.object,
-  item: PropTypes.object
+  item: PropTypes.object,
+  statuses: PropTypes.object
 };
 
 export default ResultItem;

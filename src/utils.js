@@ -203,3 +203,21 @@ export const getCountyThreshold = elem => {
   }
   return returnVal;
 };
+
+/**
+ * Returns a class based on the status text
+ * @param {string} status The text of the status property
+ * @returns {string} class name and text for associated status
+ */
+export const getStatusClass = status => {
+  let statusClass = '';
+
+  if ( status.includes( 'Accepting applications' ) ) {
+    statusClass = 'status-accepting';
+  } else if ( status.includes( 'Applications on hold/Waitlist' ) ) {
+    statusClass = 'status-waitlist';
+  } else if ( status.includes( 'Accepting applications - rolling basis' ) ) {
+    statusClass = 'status-rolling';
+  }
+  return statusClass;
+};

@@ -14,7 +14,7 @@
   "statuses": {
     "accepting": "Aceptando solicitudes",
     "waitlist": "Detenido / Lista de espera",
-    "rolling": "ZrollingZ"
+    "rolling": "Aceptando solicitudes - Por orden de llegada"
   },
   "filters": {
     "legend": "Encuentre programas de asistencia con la renta",

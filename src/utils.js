@@ -212,12 +212,12 @@ export const getCountyThreshold = elem => {
 export const getStatusClass = status => {
   let statusClass = '';
 
-  if ( status.includes( 'Accepting applications' ) ) {
+  if ( status.includes( 'Accepting applications - rolling basis' ) ) {
+    statusClass = 'status-rolling';
+  } else if ( status.includes( 'Accepting applications' ) ) {
     statusClass = 'status-accepting';
   } else if ( status.includes( 'Applications on hold/Waitlist' ) ) {
     statusClass = 'status-waitlist';
-  } else if ( status.includes( 'Accepting applications - rolling basis' ) ) {
-    statusClass = 'status-rolling';
   }
   return statusClass;
 };

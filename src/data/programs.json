@@ -215,14 +215,15 @@
       "url": "https://www.chulavistaca.gov/departments/development-services/housing/assistance-during-covid-19/rentalandutility"
     },
     {
-      "type": "City",
-      "state": "California",
-      "program": "Keep Fremont Housed",
-      "name": "Fremont",
-      "county": [
-        "Alameda County"
-      ],
-      "url": "https://fremont.gov/keepfremonthoused"
+     "type": "City",
+   "status": "Accepting applications - rolling basis",
+   "state": "California",
+   "program": "Keep Fremont Housed",
+   "name": "Fremont",
+   "county": [
+    "Alameda County"
+   ],
+   "url": "https://www.fremont.gov/government/departments/human-services/human-services-in-the-community/keep-fremont-housed"
     },
     {
       "type": "City",

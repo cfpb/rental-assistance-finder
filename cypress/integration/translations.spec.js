@@ -20,7 +20,7 @@ describe( 'Status message translations', () => {
   it( 'shows a warning notification if data not returned from api', () => {
     cy.intercept(
       'https://files.consumerfinance.gov/a/assets/raf/raf.json',
-      { statusCode: 400 }
+      { statusCode: 404 }
     ).as(
       'programJSON'
     );
@@ -55,19 +55,20 @@ describe( 'Filtering and results translations', () => {
   it( 'shows all results message on page load and translated result labels', () => {
     cy.react( 'Filters' ).should( 'exist' );
     cy.react('ResultItem')
-      .should( 'have.length', 496 )
+      .should( 'have.length', 396 )
       .first()
       .find( 'dt' )
       .then( items => {
         expect( items[0] ).to.contain( es.fields.state );
         expect( items[1] ).to.contain( es.fields.name );
         expect( items[2] ).to.contain( es.fields.type );
-        expect( items[3] ).to.contain( es.fields.contact );
+        expect( items[3] ).to.contain( es.fields.status );
+        expect( items[4] ).to.contain( es.fields.contact );
       });
     cy.react('Notification')
       .should( 
         'contain', 
-        i18n.t( 'results.all.count', { count: 496 } ) 
+        i18n.t( 'results.all.count', { count: 396 } ) 
       );
   } );
 
@@ -84,15 +85,32 @@ describe( 'Filtering and results translations', () => {
       .should( 'contain', es.filters.tribe.label );
   } );
 
+  // This test depends on the current data fixture (programs.json), so updating the data may break it.
+  it( 'shows translated statuses', () => {
+    cy.react( 'Filters' ).should( 'exist' )
+      .find( 'h2' )
+      .should( 'contain', es.filters.legend );
+    cy.get( '#state-select' ).type( 'California{enter}', { force: true } );
+    cy.react('ResultItem').first().find( '.status-row dd' )
+      .should( 'contain', es.statuses.waitlist )
+      .should( 'have.class', 'status-waitlist' );      
+    cy.react('ResultItem').eq( 2 ).find( '.status-row dd' )
+      .should( 'contain', es.statuses.accepting )
+      .should( 'have.class', 'status-accepting' );
+    cy.react('ResultItem').eq( 1 ).find( '.status-row dd' )
+      .should( 'contain', es.statuses.rolling )
+      .should( 'have.class', 'status-rolling' );
+  } );
+
   it( 'shows filtered results message when state with multiple matches is selected', () => {
     cy.react( 'Filters' ).should( 'exist' );
     cy.get( '#state-select' ).type( 'California{enter}', { force: true } );
     cy.react('ResultItem')
-      .should( 'have.length', 34 );
+      .should( 'have.length', 20 );
     cy.react('Notification')
       .should( 
         'contain', 
-        i18n.t( 'results.filtered.count', { count: 34 } ) 
+        i18n.t( 'results.filtered.count', { count: 20 } ) 
       )
       .should( 'contain', es.results.filtered.explanation_plural )
       .should( 'have.class', 'm-notification__success');
@@ -156,13 +174,13 @@ describe( 'Filtering and results translations', () => {
     cy.get( '#state-select' ).type( 'California{enter}', { force: true } );
     cy.get( '#tribe-select' ).type( 'Akwesasne{enter}', { force: true } );
     cy.react('ResultItem')
-      .should( 'have.length', 35 )
+      .should( 'have.length', 21 )
       .last()
       .should( 'contain', 'Akwesasne' );
     cy.react('Notification')
       .should( 
         'contain', 
-        i18n.t( 'results.filtered.count', { count: 35 } ) 
+        i18n.t( 'results.filtered.count', { count: 21 } ) 
       )
       .should( 'contain', es.results.filtered.explanation )
       .should( 'have.class', 'm-notification__success');

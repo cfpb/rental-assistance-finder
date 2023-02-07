@@ -37,12 +37,12 @@ describe( 'Rental assistance program filtering', () => {
     cy.react( 'Filters' ).should( 'exist' );
     cy.get( '#state-select' ).type( 'California{enter}', { force: true } );
     cy.react('ResultItem')
-      .should( 'have.length', 34 );
+      .should( 'have.length', 20 );
     cy.react('Notification')
-      .should( 'contain', '34' )
+      .should( 'contain', '20' )
       .should( 
         'contain', 
-        i18n.t( 'results.filtered.count', { count: 34 } ) 
+        i18n.t( 'results.filtered.count', { count: 20 } ) 
       )
       .should( 'contain', i18n.t( 'results.filtered.explanation' ) )
       .should( 'have.class', 'm-notification__success');
@@ -118,7 +118,7 @@ describe( 'Rental assistance program filtering', () => {
       .should( 'exist' )
       .click()
       .react( 'Option' )
-      .should( 'have.length', 147 )
+      .should( 'have.length', 92 )
       .first()
       .should( 'contain', 'Akwesasne Housing Authority/ Saint Regis Mohawk Tribe' );
   } ); 
@@ -143,14 +143,14 @@ describe( 'Rental assistance program filtering', () => {
     cy.get( '#state-select' ).type( 'California{enter}', { force: true } );
     cy.get( '#tribe-select' ).type( 'Akwesasne{enter}', { force: true } );
     cy.react('ResultItem')
-      .should( 'have.length', 35 )
+      .should( 'have.length', 21 )
       .last()
       .should( 'contain', 'Akwesasne' );
     cy.react('Notification')
-      .should( 'contain', '35' )
+      .should( 'contain', '21' )
       .should( 
         'contain', 
-        i18n.t( 'results.filtered.count', { count: 35 } ) 
+        i18n.t( 'results.filtered.count', { count: 21 } ) 
       )
       .should( 'contain', i18n.t( 'results.filtered.explanation' ) )
       .should( 'have.class', 'm-notification__success');
@@ -159,26 +159,26 @@ describe( 'Rental assistance program filtering', () => {
   it( 'shows all results after clearing filter', () => {
     cy.react( 'Filters' ).should( 'exist' );
     cy.react('ResultItem')
-      .should( 'have.length', 496 );
+      .should( 'have.length', 396 );
     cy.react('Notification')
-      .should( 'contain', '496' )
+      .should( 'contain', '396' )
       .should( 'not.have.class', 'm-notification__success');
     cy.get( '#state-select' ).type( 'California{enter}', { force: true } );
     cy.react('ResultItem')
-      .should( 'have.length', 34 );
+      .should( 'have.length', 20 );
     cy.react('Notification')
-      .should( 'contain', '34' )
+      .should( 'contain', '20' )
       .should( 
         'contain', 
-        i18n.t( 'results.filtered.count', { count: 34 } ) 
+        i18n.t( 'results.filtered.count', { count: 20 } ) 
       )
       .should( 'contain', i18n.t( 'results.filtered.explanation' ) )
       .should( 'have.class', 'm-notification__success');
     cy.react( 'ClearIndicator' ).click();
     cy.react('ResultItem')
-      .should( 'have.length', 496 );
+      .should( 'have.length', 396 );
     cy.react('Notification')
-      .should( 'contain', '496' )
+      .should( 'contain', '396' )
       .should( 'not.have.class', 'm-notification__success');
   } );
 

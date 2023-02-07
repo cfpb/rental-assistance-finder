@@ -8,7 +8,13 @@
     "state": "Estado/Territorio",
     "name": "Nombre del programa",
     "type": "Tipo de programa",
-    "contact": "Comience aquí"
+    "contact": "Comience aquí",
+    "status": "Estatus del programa"
+  },
+  "statuses": {
+    "accepting": "Aceptando solicitudes",
+    "waitlist": "Detenido / Lista de espera",
+    "rolling": "Aceptando solicitudes - Por orden de llegada"
   },
   "filters": {
     "legend": "Encuentre programas de asistencia con la renta",

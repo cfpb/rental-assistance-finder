@@ -23,9 +23,9 @@ describe( 'Rental assistance programs app status', () => {
     cy.get( '.m-notification' )
       .should( 'have.length', 1 )
       .should( 'not.have.class', 'm-notification__loading' )
-      .should('contain', '496');
+      .should('contain', '396');
     cy.get( '.result-item' )
-      .should( 'have.length', 496 );
+      .should( 'have.length', 396 );
   } );
 
 

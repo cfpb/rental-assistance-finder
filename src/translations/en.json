@@ -8,7 +8,13 @@
     "state": "State/Territory",
     "name": "Program name",
     "type": "Program type",
+    "status": "Program status",
     "contact": "Get started"
+  },
+  "statuses": {
+    "accepting": "Accepting applications",
+    "waitlist": "Applications on hold/Waitlist",
+    "rolling": "Accepting applications - rolling basis"
   },
   "filters": {
     "legend": "Find rental assistance programs",

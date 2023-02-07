@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getStatusClass } from './utils.js';
 
 const ResultItem = props => {
   const fields = props.fields;
+  const statuses = props.statuses;
+  const container = document.getElementById( 'rental-assistance-finder' );
+
+  const statusClass = getStatusClass( props.item.status );
+
   return (
     <div className='block
                     block__sub
@@ -31,6 +37,18 @@ const ResultItem = props => {
             { props.item.type }
           </dd>
         </div>
+        <div className='status-row'>
+          <dt>{ fields.status }:</dt>
+          { ( statusClass === 'status-accepting' ) &&
+            <dd className={ statusClass }>{ statuses.accepting }</dd>
+          }
+          { ( statusClass === 'status-waitlist' ) &&
+            <dd className={ statusClass }>{ statuses.waitlist }</dd>
+          }
+          { ( statusClass === 'status-rolling' ) &&
+            <dd className={ statusClass }>{ statuses.rolling }</dd>
+          }
+        </div>
         { ( props.item.url || props.item.phone ) &&
           <div>
             <dt>{ fields.contact }:&nbsp;</dt>
@@ -54,7 +72,8 @@ const ResultItem = props => {
 // Validate (type check) prop types.
 ResultItem.propTypes = {
   fields: PropTypes.object,
-  item: PropTypes.object
+  item: PropTypes.object,
+  statuses: PropTypes.object
 };
 
 export default ResultItem;

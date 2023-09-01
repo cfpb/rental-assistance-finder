@@ -2,6 +2,9 @@
 
 This tool allows users to view and filter emergency rental assistance programs funded by the U.S. Department of Treasury’s Emergency Rental Assistance Program.
 
+## ⚠️ DEPRECATION NOTE ⚠️
+The code for this tool is no longer maintained.
+
 ## React app
 
 This tool is developed and maintained as a standalone React app. The app is then built, and the final, compiled Javascript and CSS files are used by our site. These compiled files can be found in the `dist` directory.
